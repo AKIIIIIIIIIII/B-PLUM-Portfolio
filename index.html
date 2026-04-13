@@ -15,6 +15,7 @@
                     fontFamily: {
                         sans: ['Inter', 'Noto Sans JP', 'sans-serif'],
                         serif: ['Playfair Display', 'serif'],
+                        mono: ['Menlo', 'monospace'],
                     },
                     colors: {
                         primary: '#171717',
@@ -22,7 +23,13 @@
                         muted: '#a1a1a1',
                         border: '#f5f5f5',
                         bg: '#fdfcfb',
+                        lightText: '#737373',
+                        placeholder: '#d4d4d4',
                     },
+                    letterSpacing: {
+                        widest: '8.12px',
+                        tightest: '-6.8px',
+                    }
                 }
             }
         }
@@ -32,19 +39,36 @@
             background-color: #ffffff;
             color: #171717;
             overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
         }
-        .text-outline {
+        .hero-blur {
+            position: absolute;
+            top: 302px;
+            left: 882px;
+            width: 662px;
+            height: 662px;
+            background-color: #e8eae3;
+            border-radius: 16777200px;
+            filter: blur(120px);
+            opacity: 0.3;
+            z-index: 0;
+        }
+        .nav-glass {
+            background-color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+        }
+        .project-overlay {
+            background-color: rgba(23, 23, 23, 0.4);
+        }
+        .text-stroke {
             -webkit-text-stroke: 1px #d4d4d4;
             color: transparent;
-        }
-        .hero-gradient {
-            background: radial-gradient(circle at 80% 50%, rgba(232, 234, 227, 0.3) 0%, rgba(232, 234, 227, 0) 70%);
         }
     </style>
 </head>
 <body class="font-sans">
     <!-- Navigation -->
-    <nav class="fixed top-0 left-0 w-full h-[81px] bg-white/80 backdrop-blur-md border-b border-border z-50 px-8 md:px-16 flex items-center justify-between">
+    <nav class="fixed top-0 left-0 w-full h-[81px] nav-glass border-b border-border z-50 px-16 flex items-center justify-between">
         <div class="flex items-center gap-3">
             <div class="w-8 h-8 bg-primary rounded-md flex items-center justify-center">
                 <span class="font-serif italic text-white text-[10px]">bp</span>
@@ -52,39 +76,41 @@
             <span class="font-serif italic text-xl tracking-[2px]">b-plum</span>
         </div>
         <div class="hidden md:flex gap-12">
-            <a href="#works" class="text-[10px] font-medium uppercase tracking-[4px] text-muted hover:text-primary transition-colors">Works</a>
-            <a href="#laboratory" class="text-[10px] font-medium uppercase tracking-[4px] text-muted hover:text-primary transition-colors">Laboratory</a>
-            <a href="#contact" class="text-[10px] font-medium uppercase tracking-[4px] text-muted hover:text-primary transition-colors">Contact</a>
+            <a href="#works" class="text-[10px] font-medium uppercase tracking-[4.12px] text-muted hover:text-primary transition-colors">Works</a>
+            <a href="#laboratory" class="text-[10px] font-medium uppercase tracking-[4.12px] text-muted hover:text-primary transition-colors">Laboratory</a>
+            <a href="#contact" class="text-[10px] font-medium uppercase tracking-[4.12px] text-muted hover:text-primary transition-colors">Contact</a>
         </div>
     </nav>
 
     <main>
         <!-- Hero Section -->
-        <section class="relative min-h-screen pt-[81px] bg-bg overflow-hidden flex flex-col justify-center px-8 md:px-24">
-            <div class="absolute top-[30%] right-[-10%] w-[600px] h-[600px] bg-[#e8eae3] blur-[120px] opacity-30 rounded-full"></div>
+        <section class="relative min-h-[876px] bg-bg overflow-hidden flex flex-col justify-center px-24">
+            <div class="hero-blur"></div>
             
             <div class="relative z-10">
-                <div class="flex items-center gap-4 mb-16">
-                    <span class="text-[10px] font-bold uppercase tracking-[8px] text-secondary whitespace-nowrap">Archive Vol.01</span>
-                    <div class="h-px w-full bg-border"></div>
+                <div class="flex items-center gap-4 mb-16 max-w-[707px]">
+                    <span class="text-[10px] font-bold uppercase tracking-widest text-secondary whitespace-nowrap">Archive Vol.01</span>
+                    <div class="h-px flex-grow bg-border"></div>
                 </div>
 
-                <h1 class="font-serif text-[80px] md:text-[136px] leading-tight tracking-[-0.05em] mb-8">
-                    <span class="block">Silent</span>
-                    <span class="block italic text-[#d4d4d4] ml-4 md:ml-8">Narrative.</span>
-                </h1>
+                <div class="mb-24">
+                    <h1 class="font-serif text-[136px] leading-[122.4px] tracking-tightest mb-0">
+                        <span class="block text-primary">Silent</span>
+                        <span class="block italic text-placeholder ml-5">Narrative.</span>
+                    </h1>
+                </div>
 
-                <div class="max-w-[512px] mt-12">
-                    <p class="text-lg font-light leading-relaxed text-[#737373] mb-12">
+                <div class="max-w-[512px] space-y-12">
+                    <p class="text-lg font-light leading-[36px] text-lightText">
                         b-plumは、私の日々の思索とプログラミングを形にしたプロジェクト集です。<br>
                         静寂と機能性が共鳴する、デジタルの新しい風景を追求しています。
                     </p>
                     
-                    <div class="flex items-center gap-8">
-                        <button class="px-8 py-3 bg-primary text-white text-[11px] font-bold uppercase tracking-[5px] hover:opacity-90 transition-opacity">
+                    <div class="flex items-center gap-12">
+                        <button class="px-0 py-3 text-primary text-[11px] font-bold uppercase tracking-[5.56px] hover:opacity-70 transition-opacity">
                             Enter Archive
                         </button>
-                        <div class="flex items-center gap-4 text-[9px] uppercase tracking-[3px] text-[#d4d4d4]">
+                        <div class="flex items-center gap-6 text-[9px] uppercase tracking-[2.87px] text-placeholder">
                             <span>Code</span>
                             <div class="w-8 h-px bg-border"></div>
                             <span>Design</span>
@@ -96,34 +122,34 @@
             </div>
 
             <!-- Hero Image -->
-            <div class="hidden lg:block absolute top-20 right-24 w-[477px] h-[715px] rounded-md overflow-hidden shadow-2xl">
+            <div class="hidden lg:block absolute top-20 right-24 w-[477px] h-[716px] rounded-md overflow-hidden shadow-[0px_40px_100px_-20px_rgba(0,0,0,0.1)]">
                 <img src="https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85?auto=format&fit=crop&q=80&w=800" alt="Hero Image" class="w-full h-full object-cover">
             </div>
         </section>
 
         <!-- About Section -->
-        <section class="py-40 px-8 md:px-24 bg-white">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
-                <div class="relative aspect-square bg-[#fafafa] rounded-md overflow-hidden shadow-xl">
+        <section class="py-40 px-24 bg-white">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-24 items-start">
+                <div class="relative aspect-square bg-[#fafafa] rounded-md overflow-hidden shadow-[0px_25px_50px_-12px_rgba(0,0,0,0.25)]">
                     <img src="https://images.unsplash.com/photo-1516339901600-2e1a62986307?auto=format&fit=crop&q=80&w=800" alt="About Image" class="w-full h-full object-cover">
                 </div>
-                <div>
-                    <span class="text-[9px] font-bold uppercase tracking-[4px] text-secondary block mb-6">About Me</span>
-                    <h2 class="font-serif text-[50px] md:text-[72px] leading-tight mb-12">
-                        コードで、<br>
-                        <span class="italic">体温</span>を届ける。
+                <div class="pt-14">
+                    <span class="text-[9px] font-bold uppercase tracking-[4.67px] text-secondary block mb-6">About Me</span>
+                    <h2 class="font-serif text-[72px] leading-[90px] mb-12">
+                        <span class="font-medium">コードで、</span><br>
+                        <span class="italic font-normal">体温</span><span class="font-medium">を届ける。</span>
                     </h2>
-                    <p class="text-lg font-light leading-relaxed text-[#737373] mb-16 max-w-[592px]">
+                    <p class="text-lg font-light leading-[29.2px] text-lightText mb-16 max-w-[592px]">
                         b-plumは、私のデジタルな実験と創造の場です. ウェブアプリは単なるツールの集まりではありません. それは、作り手の思索がユーザーと交差する「空間」だと考えています.
                     </p>
                     <div class="flex gap-24">
                         <div>
-                            <span class="font-serif text-3xl block mb-2">20+</span>
-                            <span class="text-[10px] uppercase tracking-[1px] text-muted">Personal Projects</span>
+                            <span class="font-serif text-[30px] font-medium block mb-2">20+</span>
+                            <span class="text-[10px] uppercase tracking-[1.12px] text-muted">Personal Projects</span>
                         </div>
                         <div>
-                            <span class="font-serif text-3xl block mb-2">5y+</span>
-                            <span class="text-[10px] uppercase tracking-[1px] text-muted">Dev Experience</span>
+                            <span class="font-serif text-[30px] font-medium block mb-2">5y+</span>
+                            <span class="text-[10px] uppercase tracking-[1.12px] text-muted">Dev Experience</span>
                         </div>
                     </div>
                 </div>
@@ -131,47 +157,47 @@
         </section>
 
         <!-- Features Section -->
-        <section class="py-40 px-8 md:px-24 bg-white">
+        <section class="py-40 px-24 bg-white">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <!-- Feature 1 -->
-                <div class="p-10 border border-border rounded-md hover:shadow-lg transition-shadow">
+                <div class="p-10 border border-border rounded-md hover:shadow-sm transition-shadow">
                     <div class="w-12 h-12 bg-[#fafafa] rounded-md flex items-center justify-center mb-12">
                         <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
                     </div>
                     <div class="flex justify-between items-center mb-4">
-                        <span class="text-[11px] font-bold uppercase tracking-[4px] text-muted">Modern Tech</span>
-                        <span class="font-serif italic text-[10px] text-[#d4d4d4]">01</span>
+                        <span class="text-[11px] font-bold uppercase tracking-[4.4px] text-muted">Modern Tech</span>
+                        <span class="font-serif italic text-[10px] text-placeholder">01</span>
                     </div>
-                    <h3 class="font-serif text-2xl mb-6">最新技術の探求</h3>
-                    <p class="text-sm font-light leading-relaxed text-[#737373]">
+                    <h3 class="font-serif text-2xl font-medium mb-6">最新技術の探求</h3>
+                    <p class="text-sm font-light leading-[25.2px] text-lightText tracking-[-0.15px]">
                         React, Next.js, Rustなど, 表現の幅を広げるための新しい技術を常にプロジェクトへ取り入れています.
                     </p>
                 </div>
                 <!-- Feature 2 -->
-                <div class="p-10 border border-border rounded-md hover:shadow-lg transition-shadow">
+                <div class="p-10 border border-border rounded-md hover:shadow-sm transition-shadow">
                     <div class="w-12 h-12 bg-[#fafafa] rounded-md flex items-center justify-center mb-12">
                         <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"></path></svg>
                     </div>
                     <div class="flex justify-between items-center mb-4">
-                        <span class="text-[11px] font-bold uppercase tracking-[4px] text-muted">Aesthetics</span>
-                        <span class="font-serif italic text-[10px] text-[#d4d4d4]">02</span>
+                        <span class="text-[11px] font-bold uppercase tracking-[4.4px] text-muted">Aesthetics</span>
+                        <span class="font-serif italic text-[10px] text-placeholder">02</span>
                     </div>
-                    <h3 class="font-serif text-2xl mb-6">美学と機能</h3>
-                    <p class="text-sm font-light leading-relaxed text-[#737373]">
+                    <h3 class="font-serif text-2xl font-medium mb-6">美学と機能</h3>
+                    <p class="text-sm font-light leading-[25.2px] text-lightText tracking-[-0.15px]">
                         北欧のミニマリズムを基調に, 視覚的な美しさと使い心地の良さが共鳴するインターフェースを目指しています.
                     </p>
                 </div>
                 <!-- Feature 3 -->
-                <div class="p-10 border border-border rounded-md hover:shadow-lg transition-shadow">
+                <div class="p-10 border border-border rounded-md hover:shadow-sm transition-shadow">
                     <div class="w-12 h-12 bg-[#fafafa] rounded-md flex items-center justify-center mb-12">
                         <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
                     </div>
                     <div class="flex justify-between items-center mb-4">
-                        <span class="text-[11px] font-bold uppercase tracking-[4px] text-muted">Open Source</span>
-                        <span class="font-serif italic text-[10px] text-[#d4d4d4]">03</span>
+                        <span class="text-[11px] font-bold uppercase tracking-[4.4px] text-muted">Open Source</span>
+                        <span class="font-serif italic text-[10px] text-placeholder">03</span>
                     </div>
-                    <h3 class="font-serif text-2xl mb-6">共有の文化</h3>
-                    <p class="text-sm font-light leading-relaxed text-[#737373]">
+                    <h3 class="font-serif text-2xl font-medium mb-6">共有の文化</h3>
+                    <p class="text-sm font-light leading-[25.2px] text-lightText tracking-[-0.15px]">
                         開発のプロセスで得た知見や便利なツールは, コミュニティへ還元することを大切にしています.
                     </p>
                 </div>
@@ -179,13 +205,13 @@
         </section>
 
         <!-- Works Section -->
-        <section id="works" class="py-40 px-8 md:px-24 bg-white">
+        <section id="works" class="py-40 px-24 bg-white">
             <div class="flex flex-col md:flex-row justify-between items-start mb-24">
                 <div>
-                    <span class="text-[9px] font-normal uppercase tracking-[5px] text-[#d4d4d4] block mb-6">Personal Works</span>
-                    <h2 class="font-serif text-[60px] md:text-[96px] leading-tight mb-8">Selected Projects.</h2>
+                    <span class="text-[9px] font-normal uppercase tracking-[5.57px] text-placeholder block mb-6">Personal Works</span>
+                    <h2 class="font-serif text-[96px] leading-[120px] font-medium mb-8">Selected Projects.</h2>
                 </div>
-                <p class="max-w-[384px] text-sm font-light leading-relaxed text-muted mt-8 md:mt-16">
+                <p class="max-w-[384px] text-sm font-light leading-[22.8px] text-muted mt-16">
                     思考の軌跡。私が情熱を注いで制作したウェブアプリの一部をご紹介します。
                 </p>
             </div>
@@ -194,15 +220,15 @@
                 <!-- Project 1 -->
                 <div class="relative h-[582px] rounded-md overflow-hidden group">
                     <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1200" alt="Project 1" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
-                    <div class="absolute inset-0 bg-primary/40 flex flex-col items-center justify-center text-center px-8">
-                        <span class="text-[10px] uppercase tracking-[6px] text-white/60 mb-6">Side Project</span>
-                        <h3 class="font-serif italic text-[50px] md:text-[72px] text-white mb-8">Vinter Analytics</h3>
+                    <div class="absolute inset-0 project-overlay flex flex-col items-center justify-center text-center px-8">
+                        <span class="text-[10px] uppercase tracking-[6.12px] text-white/60 mb-6">Side Project</span>
+                        <h3 class="font-serif italic font-medium text-[72px] leading-[72px] text-white mb-8">Vinter Analytics</h3>
                         <div class="flex gap-4 mb-12">
-                            <span class="px-4 py-1 border border-white/20 rounded-full text-[9px] text-white/80 uppercase tracking-[1px]">Next.js</span>
-                            <span class="px-4 py-1 border border-white/20 rounded-full text-[9px] text-white/80 uppercase tracking-[1px]">D3.js</span>
-                            <span class="px-4 py-1 border border-white/20 rounded-full text-[9px] text-white/80 uppercase tracking-[1px]">Analytics</span>
+                            <span class="px-5 py-2 border border-white/20 rounded-full text-[9px] text-white/80 uppercase tracking-[1.07px]">Next.js</span>
+                            <span class="px-5 py-2 border border-white/20 rounded-full text-[9px] text-white/80 uppercase tracking-[1.07px]">D3.js</span>
+                            <span class="px-5 py-2 border border-white/20 rounded-full text-[9px] text-white/80 uppercase tracking-[1.07px]">Analytics</span>
                         </div>
-                        <button class="px-10 py-3 bg-white text-primary text-[10px] font-bold uppercase tracking-[3px] rounded-full hover:bg-white/90 transition-colors">
+                        <button class="px-10 py-3 bg-white text-primary text-[10px] font-bold uppercase tracking-[3.12px] rounded-full hover:bg-white/90 transition-colors">
                             View Project
                         </button>
                     </div>
@@ -210,15 +236,15 @@
                 <!-- Project 2 -->
                 <div class="relative h-[582px] rounded-md overflow-hidden group">
                     <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=1200" alt="Project 2" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
-                    <div class="absolute inset-0 bg-primary/40 flex flex-col items-center justify-center text-center px-8">
-                        <span class="text-[10px] uppercase tracking-[6px] text-white/60 mb-6">Experimental Tool</span>
-                        <h3 class="font-serif italic text-[50px] md:text-[72px] text-white mb-8">Luma Editor</h3>
+                    <div class="absolute inset-0 project-overlay flex flex-col items-center justify-center text-center px-8">
+                        <span class="text-[10px] uppercase tracking-[6.12px] text-white/60 mb-6">Experimental Tool</span>
+                        <h3 class="font-serif italic font-medium text-[72px] leading-[72px] text-white mb-8">Luma Editor</h3>
                         <div class="flex gap-4 mb-12">
-                            <span class="px-4 py-1 border border-white/20 rounded-full text-[9px] text-white/80 uppercase tracking-[1px]">Rust</span>
-                            <span class="px-4 py-1 border border-white/20 rounded-full text-[9px] text-white/80 uppercase tracking-[1px]">Wasm</span>
-                            <span class="px-4 py-1 border border-white/20 rounded-full text-[9px] text-white/80 uppercase tracking-[1px]">Editor</span>
+                            <span class="px-5 py-2 border border-white/20 rounded-full text-[9px] text-white/80 uppercase tracking-[1.07px]">Rust</span>
+                            <span class="px-5 py-2 border border-white/20 rounded-full text-[9px] text-white/80 uppercase tracking-[1.07px]">Wasm</span>
+                            <span class="px-5 py-2 border border-white/20 rounded-full text-[9px] text-white/80 uppercase tracking-[1.07px]">Editor</span>
                         </div>
-                        <button class="px-10 py-3 bg-white text-primary text-[10px] font-bold uppercase tracking-[3px] rounded-full hover:bg-white/90 transition-colors">
+                        <button class="px-10 py-3 bg-white text-primary text-[10px] font-bold uppercase tracking-[3.12px] rounded-full hover:bg-white/90 transition-colors">
                             View Project
                         </button>
                     </div>
@@ -226,18 +252,18 @@
             </div>
 
             <div class="flex justify-center mt-20">
-                <button class="px-12 py-5 border border-border rounded-full text-[11px] font-bold uppercase tracking-[4px] hover:bg-primary hover:text-white transition-all">
+                <button class="px-12 py-5 border border-border rounded-full text-[11px] font-bold uppercase tracking-[4.46px] hover:bg-primary hover:text-white transition-all">
                     Check GitHub
                 </button>
             </div>
         </section>
 
         <!-- Lab Section -->
-        <section id="laboratory" class="py-40 px-8 md:px-24 bg-[#faf9f6] border-y border-border">
+        <section id="laboratory" class="py-40 px-24 bg-[#faf9f6] border-y border-border">
             <div class="text-center max-w-[672px] mx-auto mb-24">
-                <span class="text-[9px] uppercase tracking-[5px] text-[#d4d4d4] block mb-6">The Lab</span>
-                <h2 class="font-serif text-[50px] md:text-[72px] leading-tight mb-8">Digital Experiments.</h2>
-                <p class="text-base font-light leading-relaxed text-[#737373]">
+                <span class="text-[9px] uppercase tracking-[5.57px] text-placeholder block mb-6">The Lab</span>
+                <h2 class="font-serif text-[72px] leading-[90px] font-medium mb-8">Digital Experiments.</h2>
+                <p class="text-base font-light leading-[26px] text-lightText tracking-[-0.31px]">
                     完成されたプロダクトの裏側にある、無数の試行錯誤。b-plum Labでは、最新技術を用いた実験的な実装やコードの断片を公開しています。
                 </p>
             </div>
@@ -249,11 +275,11 @@
                         <div class="w-10 h-10 bg-[#fafafa] rounded-full flex items-center justify-center">
                             <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
                         </div>
-                        <span class="font-mono text-[10px] text-[#d4d4d4]">#exp.01</span>
+                        <span class="font-mono text-[10px] text-placeholder">#exp.01</span>
                     </div>
                     <div>
-                        <h4 class="font-serif italic text-lg mb-4">Lab_Experiment_1</h4>
-                        <p class="text-[11px] font-light text-muted tracking-[0.3px]">Explore interactive components and shaders.</p>
+                        <h4 class="font-serif italic font-medium text-lg mb-4">Lab_Experiment_1</h4>
+                        <p class="text-[11px] font-light text-muted tracking-[0.34px] leading-[16.5px]">Explore interactive components and shaders.</p>
                     </div>
                 </div>
                 <!-- Lab Item 2 -->
@@ -262,11 +288,11 @@
                         <div class="w-10 h-10 bg-[#fafafa] rounded-full flex items-center justify-center">
                             <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
                         </div>
-                        <span class="font-mono text-[10px] text-[#d4d4d4]">#exp.02</span>
+                        <span class="font-mono text-[10px] text-placeholder">#exp.02</span>
                     </div>
                     <div>
-                        <h4 class="font-serif italic text-lg mb-4">Lab_Experiment_2</h4>
-                        <p class="text-[11px] font-light text-muted tracking-[0.3px]">Explore interactive components and shaders.</p>
+                        <h4 class="font-serif italic font-medium text-lg mb-4">Lab_Experiment_2</h4>
+                        <p class="text-[11px] font-light text-muted tracking-[0.34px] leading-[16.5px]">Explore interactive components and shaders.</p>
                     </div>
                 </div>
                 <!-- Lab Item 3 -->
@@ -275,11 +301,11 @@
                         <div class="w-10 h-10 bg-[#fafafa] rounded-full flex items-center justify-center">
                             <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
                         </div>
-                        <span class="font-mono text-[10px] text-[#d4d4d4]">#exp.03</span>
+                        <span class="font-mono text-[10px] text-placeholder">#exp.03</span>
                     </div>
                     <div>
-                        <h4 class="font-serif italic text-lg mb-4">Lab_Experiment_3</h4>
-                        <p class="text-[11px] font-light text-muted tracking-[0.3px]">Explore interactive components and shaders.</p>
+                        <h4 class="font-serif italic font-medium text-lg mb-4">Lab_Experiment_3</h4>
+                        <p class="text-[11px] font-light text-muted tracking-[0.34px] leading-[16.5px]">Explore interactive components and shaders.</p>
                     </div>
                 </div>
                 <!-- Lab Item 4 -->
@@ -288,42 +314,42 @@
                         <div class="w-10 h-10 bg-[#fafafa] rounded-full flex items-center justify-center">
                             <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
                         </div>
-                        <span class="font-mono text-[10px] text-[#d4d4d4]">#exp.04</span>
+                        <span class="font-mono text-[10px] text-placeholder">#exp.04</span>
                     </div>
                     <div>
-                        <h4 class="font-serif italic text-lg mb-4">Lab_Experiment_4</h4>
-                        <p class="text-[11px] font-light text-muted tracking-[0.3px]">Explore interactive components and shaders.</p>
+                        <h4 class="font-serif italic font-medium text-lg mb-4">Lab_Experiment_4</h4>
+                        <p class="text-[11px] font-light text-muted tracking-[0.34px] leading-[16.5px]">Explore interactive components and shaders.</p>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- Quote Section -->
-        <section class="py-40 px-8 md:px-24 bg-white text-center">
+        <section class="py-40 px-24 bg-white text-center">
             <div class="max-w-[896px] mx-auto">
-                <blockquote class="font-serif italic text-[32px] md:text-[48px] leading-tight mb-16">
+                <blockquote class="font-serif italic font-medium text-[48px] leading-[76.8px] mb-16">
                     「完璧とは、これ以上加えるものがない状態ではなく、これ以上削るものがない状態のことである。」
                 </blockquote>
-                <cite class="text-[10px] font-bold uppercase tracking-[4px] not-italic">Antoine de Saint-Exupéry</cite>
+                <cite class="text-[10px] font-bold uppercase tracking-[4.12px] not-italic">Antoine de Saint-Exupéry</cite>
             </div>
         </section>
 
         <!-- Footer -->
-        <footer id="contact" class="pt-60 pb-20 px-8 md:px-24 bg-white overflow-hidden">
+        <footer id="contact" class="pt-60 pb-20 px-24 bg-white overflow-hidden">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-24 mb-40">
                 <div>
-                    <h2 class="font-serif text-[80px] md:text-[192px] leading-[0.8] tracking-[-0.05em] mb-16">
-                        Keep <br>
-                        <span class="text-[#d4d4d4] italic">In Touch.</span>
+                    <h2 class="font-serif text-[192px] leading-[153.6px] tracking-[-9.6px] mb-16">
+                        <span class="font-medium text-primary">Keep </span><br>
+                        <span class="text-placeholder italic font-normal">In Touch.</span>
                     </h2>
                     <div class="inline-block border-b border-primary/10 pb-2">
-                        <a href="mailto:hello@b-plum.dev" class="font-serif text-3xl md:text-[36px] tracking-[-0.05em] hover:opacity-70 transition-opacity">hello@b-plum.dev</a>
+                        <a href="mailto:hello@b-plum.dev" class="font-serif text-[36px] tracking-[-1.8px] leading-[40px] hover:opacity-70 transition-opacity">hello@b-plum.dev</a>
                     </div>
                 </div>
                 <div class="flex flex-col justify-end lg:items-end">
                     <div class="mb-12 lg:text-right">
-                        <span class="text-[9px] uppercase tracking-[5px] text-muted block mb-6">Connect</span>
-                        <p class="font-serif italic text-lg leading-relaxed max-w-[374px]">
+                        <span class="text-[9px] uppercase tracking-[5.57px] text-muted block mb-6">Connect</span>
+                        <p class="font-serif italic text-lg leading-[20px] max-w-[374px]">
                             Exploring the intersection of<br>
                             art and software engineering.
                         </p>
@@ -342,12 +368,12 @@
             <div class="h-px bg-border w-full mb-12"></div>
             
             <div class="flex flex-col md:flex-row justify-between items-center gap-8">
-                <div class="flex items-center gap-4 text-[9px] font-medium uppercase tracking-[4px] text-muted">
+                <div class="flex items-center gap-4 text-[9px] font-medium uppercase tracking-[4.67px] text-muted">
                     <span>© 2026 B-PLUM | PERSONAL PORTFOLIO</span>
                     <span class="opacity-30">/</span>
                     <span>Crafting with passion</span>
                 </div>
-                <div class="flex gap-12 text-[9px] font-medium uppercase tracking-[4px] text-muted">
+                <div class="flex gap-12 text-[9px] font-medium uppercase tracking-[4.67px] text-muted">
                     <a href="#" class="hover:text-primary transition-colors">Instagram</a>
                     <a href="#" class="hover:text-primary transition-colors">X</a>
                     <a href="#" class="hover:text-primary transition-colors">GitHub</a>
@@ -361,9 +387,12 @@
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
             });
         });
     </script>

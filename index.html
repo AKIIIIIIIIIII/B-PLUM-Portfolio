@@ -35,11 +35,25 @@
         }
     </script>
     <style>
+        :root {
+            --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+        }
         body {
             background-color: #ffffff;
             color: #171717;
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
+            scroll-behavior: smooth;
+        }
+        /* Subtle noise texture for a premium feel */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            opacity: 0.02;
+            z-index: 9999;
+            pointer-events: none;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
         }
         .hero-blur {
             position: absolute;
@@ -53,6 +67,11 @@
             filter: blur(120px);
             opacity: 0.3;
             z-index: 0;
+            animation: pulse 10s infinite alternate var(--ease-out-expo);
+        }
+        @keyframes pulse {
+            from { transform: translateX(-50%) scale(1); opacity: 0.2; }
+            to { transform: translateX(-45%) scale(1.1); opacity: 0.4; }
         }
         @media (min-width: 1024px) {
             .hero-blur {
@@ -61,14 +80,29 @@
                 transform: none;
                 width: 662px;
                 height: 662px;
+                animation: pulse-desktop 15s infinite alternate var(--ease-out-expo);
             }
         }
+        @keyframes pulse-desktop {
+            from { transform: translate(0, 0) scale(1); }
+            to { transform: translate(-20px, 20px) scale(1.05); }
+        }
         .nav-glass {
-            background-color: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(10px);
+            background-color: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            transition: background-color 0.3s ease;
+        }
+        .nav-scrolled {
+            background-color: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03);
         }
         .project-overlay {
             background-color: rgba(23, 23, 23, 0.4);
+            transition: background-color 0.5s var(--ease-out-expo);
+        }
+        .group:hover .project-overlay {
+            background-color: rgba(23, 23, 23, 0.3);
         }
         .text-stroke {
             -webkit-text-stroke: 1px #d4d4d4;
@@ -86,6 +120,41 @@
         }
         body.nav-open {
             overflow: hidden;
+        }
+        /* Reveal on scroll */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 1.2s var(--ease-out-expo), transform 1.2s var(--ease-out-expo);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+
+        /* Custom button underline effect */
+        .btn-underline {
+            position: relative;
+            display: inline-block;
+        }
+        .btn-underline::after {
+            content: "";
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background-color: currentColor;
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.6s var(--ease-out-expo);
+        }
+        .btn-underline:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
         }
     </style>
 </head>
@@ -121,44 +190,44 @@
 
             <div class="relative z-10 mx-auto flex w-full max-w-[1280px] flex-col gap-0 lg:grid lg:grid-cols-[minmax(0,1fr)_minmax(280px,477px)] lg:items-start lg:justify-between lg:gap-x-[clamp(2rem,5vw,6.25rem)]">
                 <!-- 左列：コピー（Figma 707 / 512 幅の階層に近づける） -->
-                <div class="min-w-0 lg:max-w-[707px]">
-                    <div class="mb-10 flex max-w-full items-center gap-3 sm:mb-16 sm:gap-4">
+                <div class="min-w-0 lg:max-w-[707px] reveal">
+                    <div class="mb-10 flex max-w-full items-center gap-3 sm:mb-16 sm:gap-4 reveal-delay-1">
                         <span class="shrink-0 text-[9px] font-bold uppercase tracking-widest text-secondary sm:text-[10px]">Archive Vol.01</span>
                         <div class="h-px min-w-0 flex-1 bg-border"></div>
                     </div>
 
-                    <div class="mb-12 sm:mb-20 lg:mb-24">
+                    <div class="mb-12 sm:mb-20 lg:mb-24 reveal-delay-2">
                         <h1 class="hero-title mb-0 font-serif">
-                            <span class="block text-primary">Silent</span>
+                            <span class="block text-primary transition-transform duration-1000 hover:translate-x-2 cursor-default">Silent</span>
                             <!-- Figma: Narrative 行は約 20.4px インデント -->
-                            <span class="block pl-1 italic text-placeholder sm:pl-3 lg:pl-[20.4px]">Narrative.</span>
+                            <span class="block pl-1 italic text-placeholder sm:pl-3 lg:pl-[20.4px] transition-transform duration-1000 hover:translate-x-4 cursor-default">Narrative.</span>
                         </h1>
                     </div>
 
-                    <div class="max-w-[512px] space-y-8 sm:space-y-12">
+                    <div class="max-w-[512px] space-y-8 sm:space-y-12 reveal-delay-3">
                         <p class="text-base font-light leading-relaxed text-lightText sm:text-lg sm:leading-[36px]">
                             b-plumは、私の日々の思索とプログラミングを形にしたプロジェクト集です。<br class="hidden sm:inline">
                             静寂と機能性が共鳴する、デジタルの新しい風景を追求しています。
                         </p>
 
                         <div class="flex flex-col gap-6 sm:flex-row sm:items-center sm:gap-10 lg:gap-12">
-                            <button type="button" class="min-h-[44px] self-start px-0 py-3 text-left text-[11px] font-bold uppercase tracking-[5.56px] text-primary hover:opacity-70 transition-opacity">
+                            <button type="button" class="btn-underline min-h-[44px] self-start px-0 py-3 text-left text-[11px] font-bold uppercase tracking-[5.56px] text-primary hover:opacity-70 transition-opacity">
                                 Enter Archive
                             </button>
                             <div class="flex flex-wrap items-center gap-3 text-[9px] uppercase tracking-[2.87px] text-placeholder sm:gap-6">
-                                <span>Code</span>
+                                <span class="hover:text-primary transition-colors cursor-default">Code</span>
                                 <div class="hidden h-px w-8 bg-border sm:block"></div>
-                                <span>Design</span>
+                                <span class="hover:text-primary transition-colors cursor-default">Design</span>
                                 <div class="hidden h-px w-8 bg-border sm:block"></div>
-                                <span>Soul</span>
+                                <span class="hover:text-primary transition-colors cursor-default">Soul</span>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- 右列：Figma 4:5 ノードどおり幅~477・角丸6・影。縦716は実画面で長すぎるため高さを抑え cover でトリミング -->
-                <div class="relative z-[1] mx-auto mt-12 w-full max-w-lg shrink-0 sm:mt-16 sm:max-w-xl lg:mx-0 lg:mt-20 lg:w-full lg:max-w-[477px]">
-                    <div class="relative w-full overflow-hidden rounded-[6px] shadow-[0px_40px_100px_-20px_rgba(0,0,0,0.1)]">
+                <div class="relative z-[1] mx-auto mt-12 w-full max-w-lg shrink-0 sm:mt-16 sm:max-w-xl lg:mx-0 lg:mt-20 lg:w-full lg:max-w-[477px] reveal reveal-delay-2">
+                    <div class="relative w-full overflow-hidden rounded-[6px] shadow-[0px_40px_100px_-20px_rgba(0,0,0,0.1)] transition-transform duration-1000 hover:scale-[1.02]">
                         <div class="relative mx-auto h-[min(52svh,440px)] w-full max-w-[477px] sm:h-[min(50svh,480px)] lg:mx-0 lg:h-[min(600px,58svh)]">
                             <img src="https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85?auto=format&fit=crop&q=80&w=800" alt="" class="absolute inset-0 h-full w-full object-cover object-center" width="800" height="1067" decoding="async">
                         </div>
@@ -168,27 +237,27 @@
         </section>
 
         <!-- About Section -->
-        <section class="bg-white py-16 sm:py-24 md:py-32 lg:py-40 px-4 sm:px-6 md:px-12 lg:px-24">
+        <section class="bg-white py-16 sm:py-24 md:py-32 lg:py-40 px-4 sm:px-6 md:px-12 lg:px-24 reveal">
             <div class="mx-auto grid max-w-[1280px] grid-cols-1 items-start gap-12 sm:gap-16 lg:grid-cols-2 lg:gap-24">
-                <div class="relative aspect-[4/5] w-full max-w-xl bg-[#fafafa] sm:aspect-square lg:max-w-none overflow-hidden rounded-md shadow-[0px_25px_50px_-12px_rgba(0,0,0,0.25)]">
+                <div class="relative aspect-[4/5] w-full max-w-xl bg-[#fafafa] sm:aspect-square lg:max-w-none overflow-hidden rounded-md shadow-[0px_25px_50px_-12px_rgba(0,0,0,0.25)] transition-transform duration-1000 hover:scale-[1.01]">
                     <img src="https://images.unsplash.com/photo-1516339901600-2e1a62986307?auto=format&fit=crop&q=80&w=800" alt="About" class="h-full w-full object-cover" width="800" height="800">
                 </div>
-                <div class="pt-0 lg:pt-14">
+                <div class="pt-0 lg:pt-14 reveal-delay-1">
                     <span class="mb-4 block text-[9px] font-bold uppercase tracking-[4.67px] text-secondary sm:mb-6">About Me</span>
                     <h2 class="mb-8 font-serif text-[clamp(2rem,5vw+0.5rem,4.5rem)] font-medium leading-[1.15] sm:mb-12 sm:leading-tight">
-                        <span>コードで、</span><br>
+                        <span class="font-medium">コードで、</span><br>
                         <span class="italic font-normal">体温</span><span>を届ける。</span>
                     </h2>
                     <p class="mb-10 max-w-[592px] text-base font-light leading-relaxed text-lightText sm:mb-16 sm:text-lg sm:leading-[29.2px]">
                         b-plumは、私のデジタルな実験と創造の場です. ウェブアプリは単なるツールの集まりではありません. それは、作り手の思索がユーザーと交差する「空間」だと考えています.
                     </p>
                     <div class="flex flex-wrap gap-x-12 gap-y-8 sm:gap-24">
-                        <div>
-                            <span class="mb-2 block font-serif text-2xl font-medium sm:text-[30px]">20+</span>
+                        <div class="group">
+                            <span class="mb-2 block font-serif text-2xl font-medium sm:text-[30px] transition-transform duration-500 group-hover:-translate-y-1">20+</span>
                             <span class="text-[10px] uppercase tracking-[1.12px] text-muted">Personal Projects</span>
                         </div>
-                        <div>
-                            <span class="mb-2 block font-serif text-2xl font-medium sm:text-[30px]">5y+</span>
+                        <div class="group">
+                            <span class="mb-2 block font-serif text-2xl font-medium sm:text-[30px] transition-transform duration-500 group-hover:-translate-y-1">5y+</span>
                             <span class="text-[10px] uppercase tracking-[1.12px] text-muted">Dev Experience</span>
                         </div>
                     </div>
@@ -197,11 +266,11 @@
         </section>
 
         <!-- Features Section -->
-        <section class="bg-white py-16 sm:py-24 md:py-32 lg:py-40 px-4 sm:px-6 md:px-12 lg:px-24">
+        <section class="bg-white py-16 sm:py-24 md:py-32 lg:py-40 px-4 sm:px-6 md:px-12 lg:px-24 reveal">
             <div class="mx-auto grid max-w-[1280px] grid-cols-1 gap-6 sm:gap-8 md:grid-cols-2 lg:grid-cols-3">
                 <!-- Feature 1 -->
-                <div class="rounded-md border border-border p-6 transition-shadow hover:shadow-sm sm:p-8 lg:p-10">
-                    <div class="w-12 h-12 bg-[#fafafa] rounded-md flex items-center justify-center mb-12">
+                <div class="rounded-md border border-border p-6 transition-all duration-500 hover:shadow-md hover:border-primary/10 sm:p-8 lg:p-10 group">
+                    <div class="w-12 h-12 bg-[#fafafa] rounded-md flex items-center justify-center mb-12 transition-transform duration-500 group-hover:scale-110 group-hover:bg-primary/5">
                         <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
                     </div>
                     <div class="flex justify-between items-center mb-4">
@@ -214,8 +283,8 @@
                     </p>
                 </div>
                 <!-- Feature 2 -->
-                <div class="rounded-md border border-border p-6 transition-shadow hover:shadow-sm sm:p-8 lg:p-10">
-                    <div class="w-12 h-12 bg-[#fafafa] rounded-md flex items-center justify-center mb-12">
+                <div class="rounded-md border border-border p-6 transition-all duration-500 hover:shadow-md hover:border-primary/10 sm:p-8 lg:p-10 group">
+                    <div class="w-12 h-12 bg-[#fafafa] rounded-md flex items-center justify-center mb-12 transition-transform duration-500 group-hover:scale-110 group-hover:bg-primary/5">
                         <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"></path></svg>
                     </div>
                     <div class="flex justify-between items-center mb-4">
@@ -228,8 +297,8 @@
                     </p>
                 </div>
                 <!-- Feature 3 -->
-                <div class="rounded-md border border-border p-6 transition-shadow hover:shadow-sm sm:p-8 md:col-span-2 lg:col-span-1 lg:p-10">
-                    <div class="w-12 h-12 bg-[#fafafa] rounded-md flex items-center justify-center mb-12">
+                <div class="rounded-md border border-border p-6 transition-all duration-500 hover:shadow-md hover:border-primary/10 sm:p-8 md:col-span-2 lg:col-span-1 lg:p-10 group">
+                    <div class="w-12 h-12 bg-[#fafafa] rounded-md flex items-center justify-center mb-12 transition-transform duration-500 group-hover:scale-110 group-hover:bg-primary/5">
                         <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
                     </div>
                     <div class="flex justify-between items-center mb-4">
@@ -245,10 +314,10 @@
         </section>
 
         <!-- Works Section（Figma node 4:114: Selected Projects ブロック） -->
-        <section id="works" class="bg-white py-16 sm:py-24 md:py-32 lg:py-40 px-4 sm:px-6 md:px-12 lg:px-24">
+        <section id="works" class="bg-white py-16 sm:py-24 md:py-32 lg:py-40 px-4 sm:px-6 md:px-12 lg:px-24 reveal">
             <div class="mx-auto flex w-full max-w-[1280px] flex-col gap-12 sm:gap-16 lg:gap-[96px]">
                 <!-- Header 4:115 — 高さ約144px、見出し左・説明384px幅で右寄せ風 -->
-                <header class="relative w-full lg:min-h-[144px]">
+                <header class="relative w-full lg:min-h-[144px] reveal-delay-1">
                     <p class="mb-3 text-[9px] font-normal uppercase leading-[13.5px] tracking-[5.567px] text-[#d4d4d4] lg:absolute lg:left-0 lg:top-[8.5px] lg:mb-0">Personal Works</p>
                     <div class="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between lg:pt-[24px]">
                         <h2 class="max-w-[756px] font-serif text-[clamp(2.25rem,7vw,6rem)] font-medium leading-[1.1] text-primary sm:leading-tight lg:text-[96px] lg:leading-[120px]">
@@ -263,18 +332,18 @@
                 <!-- カード列 4:121 — gap 32px、各カード h 582.398・角丸6・背景 #f5f5f5 -->
                 <div class="flex w-full flex-col gap-8 lg:gap-[32px]">
                     <!-- Project 1 — 4:122 -->
-                    <article class="group relative w-full overflow-hidden rounded-[6px] bg-[#f5f5f5] aspect-[16/10] sm:aspect-[1280/582] lg:aspect-auto lg:h-[582px]">
-                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1280" alt="" class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.02]" width="1280" height="582">
+                    <article class="group relative w-full overflow-hidden rounded-[6px] bg-[#f5f5f5] aspect-[16/10] sm:aspect-[1280/582] lg:aspect-auto lg:h-[582px] reveal reveal-delay-2">
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1280" alt="" class="absolute inset-0 h-full w-full object-cover transition-transform duration-1000 group-hover:scale-[1.05]" width="1280" height="582">
                         <div class="project-overlay absolute inset-0 flex items-center justify-center px-6 py-12 sm:px-12">
-                            <div class="flex max-w-[497px] flex-col items-center text-center">
+                            <div class="flex max-w-[497px] flex-col items-center text-center transition-transform duration-700 group-hover:scale-105">
                                 <p class="text-[10px] font-normal uppercase leading-[15px] tracking-[6.1172px] text-white/60">Side Project</p>
                                 <h3 class="mt-6 font-serif text-[clamp(2rem,7vw,4.5rem)] font-medium italic leading-none text-white lg:mt-6 lg:text-[72px] lg:leading-[72px]">Vinter Analytics</h3>
                                 <div class="mt-8 flex flex-wrap items-center justify-center gap-4 lg:mt-8">
-                                    <span class="inline-flex h-[23.5px] items-center rounded-full border border-white/20 px-4 text-[9px] font-normal uppercase leading-[13.5px] tracking-[1.067px] text-white/80">Next.js</span>
-                                    <span class="inline-flex h-[23.5px] items-center rounded-full border border-white/20 px-4 text-[9px] font-normal uppercase leading-[13.5px] tracking-[1.067px] text-white/80">D3.js</span>
-                                    <span class="inline-flex h-[23.5px] items-center rounded-full border border-white/20 px-4 text-[9px] font-normal uppercase leading-[13.5px] tracking-[1.067px] text-white/80">Analytics</span>
+                                    <span class="inline-flex h-[23.5px] items-center rounded-full border border-white/20 px-4 text-[9px] font-normal uppercase leading-[13.5px] tracking-[1.067px] text-white/80 transition-colors group-hover:border-white/40">Next.js</span>
+                                    <span class="inline-flex h-[23.5px] items-center rounded-full border border-white/20 px-4 text-[9px] font-normal uppercase leading-[13.5px] tracking-[1.067px] text-white/80 transition-colors group-hover:border-white/40">D3.js</span>
+                                    <span class="inline-flex h-[23.5px] items-center rounded-full border border-white/20 px-4 text-[9px] font-normal uppercase leading-[13.5px] tracking-[1.067px] text-white/80 transition-colors group-hover:border-white/40">Analytics</span>
                                 </div>
-                                <button type="button" class="mt-8 flex h-[39px] min-w-[178px] items-center justify-center rounded-full bg-white px-6 text-[10px] font-bold uppercase leading-[15px] tracking-[3.1172px] text-primary transition-colors hover:bg-white/90 lg:mt-10">
+                                <button type="button" class="mt-8 flex h-[39px] min-w-[178px] items-center justify-center rounded-full bg-white px-6 text-[10px] font-bold uppercase leading-[15px] tracking-[3.1172px] text-primary transition-all duration-300 hover:bg-primary hover:text-white lg:mt-10">
                                     View Project
                                 </button>
                             </div>
@@ -282,18 +351,18 @@
                     </article>
 
                     <!-- Project 2 — 4:138 -->
-                    <article class="group relative w-full overflow-hidden rounded-[6px] bg-[#f5f5f5] aspect-[16/10] sm:aspect-[1280/582] lg:aspect-auto lg:h-[582px]">
-                        <img src="https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?auto=format&fit=crop&q=80&w=1280" alt="" class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.02]" width="1280" height="582">
+                    <article class="group relative w-full overflow-hidden rounded-[6px] bg-[#f5f5f5] aspect-[16/10] sm:aspect-[1280/582] lg:aspect-auto lg:h-[582px] reveal reveal-delay-3">
+                        <img src="https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?auto=format&fit=crop&q=80&w=1280" alt="" class="absolute inset-0 h-full w-full object-cover transition-transform duration-1000 group-hover:scale-[1.05]" width="1280" height="582">
                         <div class="project-overlay absolute inset-0 flex items-center justify-center px-6 py-12 sm:px-12">
-                            <div class="flex max-w-[392px] flex-col items-center text-center">
+                            <div class="flex max-w-[392px] flex-col items-center text-center transition-transform duration-700 group-hover:scale-105">
                                 <p class="text-[10px] font-normal uppercase leading-[15px] tracking-[6.1172px] text-white/60">Experimental Tool</p>
                                 <h3 class="mt-6 font-serif text-[clamp(2rem,7vw,4.5rem)] font-medium italic leading-none text-white lg:mt-6 lg:text-[72px] lg:leading-[72px]">Luma Editor</h3>
                                 <div class="mt-8 flex flex-wrap items-center justify-center gap-4 lg:mt-8">
-                                    <span class="inline-flex h-[23.5px] items-center rounded-full border border-white/20 px-4 text-[9px] font-normal uppercase leading-[13.5px] tracking-[1.067px] text-white/80">Rust</span>
-                                    <span class="inline-flex h-[23.5px] items-center rounded-full border border-white/20 px-4 text-[9px] font-normal uppercase leading-[13.5px] tracking-[1.067px] text-white/80">Wasm</span>
-                                    <span class="inline-flex h-[23.5px] items-center rounded-full border border-white/20 px-4 text-[9px] font-normal uppercase leading-[13.5px] tracking-[1.067px] text-white/80">Editor</span>
+                                    <span class="inline-flex h-[23.5px] items-center rounded-full border border-white/20 px-4 text-[9px] font-normal uppercase leading-[13.5px] tracking-[1.067px] text-white/80 transition-colors group-hover:border-white/40">Rust</span>
+                                    <span class="inline-flex h-[23.5px] items-center rounded-full border border-white/20 px-4 text-[9px] font-normal uppercase leading-[13.5px] tracking-[1.067px] text-white/80 transition-colors group-hover:border-white/40">Wasm</span>
+                                    <span class="inline-flex h-[23.5px] items-center rounded-full border border-white/20 px-4 text-[9px] font-normal uppercase leading-[13.5px] tracking-[1.067px] text-white/80 transition-colors group-hover:border-white/40">Editor</span>
                                 </div>
-                                <button type="button" class="mt-8 flex h-[39px] min-w-[178px] items-center justify-center rounded-full bg-white px-6 text-[10px] font-bold uppercase leading-[15px] tracking-[3.1172px] text-primary transition-colors hover:bg-white/90 lg:mt-10">
+                                <button type="button" class="mt-8 flex h-[39px] min-w-[178px] items-center justify-center rounded-full bg-white px-6 text-[10px] font-bold uppercase leading-[15px] tracking-[3.1172px] text-primary transition-all duration-300 hover:bg-primary hover:text-white lg:mt-10">
                                     View Project
                                 </button>
                             </div>
@@ -301,18 +370,18 @@
                     </article>
 
                     <!-- Project 3 — 4:154 Eco Flow System -->
-                    <article class="group relative w-full overflow-hidden rounded-[6px] bg-[#f5f5f5] aspect-[16/10] sm:aspect-[1280/582] lg:aspect-auto lg:h-[582px]">
-                        <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=1280" alt="" class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.02]" width="1280" height="582">
+                    <article class="group relative w-full overflow-hidden rounded-[6px] bg-[#f5f5f5] aspect-[16/10] sm:aspect-[1280/582] lg:aspect-auto lg:h-[582px] reveal reveal-delay-1">
+                        <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=1280" alt="" class="absolute inset-0 h-full w-full object-cover transition-transform duration-1000 group-hover:scale-[1.05]" width="1280" height="582">
                         <div class="project-overlay absolute inset-0 flex items-center justify-center px-6 py-12 sm:px-12">
-                            <div class="flex max-w-[506px] flex-col items-center text-center">
+                            <div class="flex max-w-[506px] flex-col items-center text-center transition-transform duration-700 group-hover:scale-105">
                                 <p class="text-[10px] font-normal uppercase leading-[15px] tracking-[6.1172px] text-white/60">Personal App</p>
                                 <h3 class="mt-6 font-serif text-[clamp(1.75rem,6.5vw,4rem)] font-medium italic leading-none text-white lg:mt-6 lg:text-[72px] lg:leading-[72px]">Eco Flow System</h3>
                                 <div class="mt-8 flex flex-wrap items-center justify-center gap-4 lg:mt-8">
-                                    <span class="inline-flex h-[23.5px] items-center rounded-full border border-white/20 px-4 text-[9px] font-normal uppercase leading-[13.5px] tracking-[1.067px] text-white/80">React Native</span>
-                                    <span class="inline-flex h-[23.5px] items-center rounded-full border border-white/20 px-4 text-[9px] font-normal uppercase leading-[13.5px] tracking-[1.067px] text-white/80">Firebase</span>
-                                    <span class="inline-flex h-[23.5px] items-center rounded-full border border-white/20 px-3 text-[9px] font-normal uppercase leading-[13.5px] tracking-[1.067px] text-white/80">IoT</span>
+                                    <span class="inline-flex h-[23.5px] items-center rounded-full border border-white/20 px-4 text-[9px] font-normal uppercase leading-[13.5px] tracking-[1.067px] text-white/80 transition-colors group-hover:border-white/40">React Native</span>
+                                    <span class="inline-flex h-[23.5px] items-center rounded-full border border-white/20 px-4 text-[9px] font-normal uppercase leading-[13.5px] tracking-[1.067px] text-white/80 transition-colors group-hover:border-white/40">Firebase</span>
+                                    <span class="inline-flex h-[23.5px] items-center rounded-full border border-white/20 px-3 text-[9px] font-normal uppercase leading-[13.5px] tracking-[1.067px] text-white/80 transition-colors group-hover:border-white/40">IoT</span>
                                 </div>
-                                <button type="button" class="mt-8 flex h-[39px] min-w-[178px] items-center justify-center rounded-full bg-white px-6 text-[10px] font-bold uppercase leading-[15px] tracking-[3.1172px] text-primary transition-colors hover:bg-white/90 lg:mt-10">
+                                <button type="button" class="mt-8 flex h-[39px] min-w-[178px] items-center justify-center rounded-full bg-white px-6 text-[10px] font-bold uppercase leading-[15px] tracking-[3.1172px] text-primary transition-all duration-300 hover:bg-primary hover:text-white lg:mt-10">
                                     View Project
                                 </button>
                             </div>
@@ -321,8 +390,8 @@
                 </div>
 
                 <!-- Check GitHub — 4:170 -->
-                <div class="flex w-full justify-center pt-12 sm:pt-16 lg:pt-20">
-                    <button type="button" class="flex h-[58.5px] w-[min(100%,238px)] items-center justify-center rounded-full border border-[#f5f5f5] bg-white text-[11px] font-bold uppercase leading-[16.5px] tracking-[4.4645px] text-[#0a0a0a] transition-colors hover:border-primary/20 hover:bg-bg">
+                <div class="flex w-full justify-center pt-12 sm:pt-16 lg:pt-20 reveal">
+                    <button type="button" class="flex h-[58.5px] w-[min(100%,238px)] items-center justify-center rounded-full border border-[#f5f5f5] bg-white text-[11px] font-bold uppercase leading-[16.5px] tracking-[4.4645px] text-[#0a0a0a] transition-all duration-300 hover:border-primary hover:bg-primary hover:text-white shadow-sm hover:shadow-lg">
                         Check GitHub
                     </button>
                 </div>
@@ -330,8 +399,8 @@
         </section>
 
         <!-- Lab Section -->
-        <section id="laboratory" class="border-y border-border bg-[#faf9f6] py-16 sm:py-24 md:py-32 lg:py-40 px-4 sm:px-6 md:px-12 lg:px-24">
-            <div class="mx-auto mb-12 max-w-[672px] text-center sm:mb-16 md:mb-24">
+        <section id="laboratory" class="border-y border-border bg-[#faf9f6] py-16 sm:py-24 md:py-32 lg:py-40 px-4 sm:px-6 md:px-12 lg:px-24 reveal">
+            <div class="mx-auto mb-12 max-w-[672px] text-center sm:mb-16 md:mb-24 reveal-delay-1">
                 <span class="mb-4 block text-[9px] uppercase tracking-[5.57px] text-placeholder sm:mb-6">The Lab</span>
                 <h2 class="mb-6 font-serif text-[clamp(2rem,5vw+0.5rem,4.5rem)] font-medium leading-tight sm:mb-8 sm:leading-[1.15]">Digital Experiments.</h2>
                 <p class="text-sm font-light leading-relaxed text-lightText tracking-[-0.31px] sm:text-base sm:leading-[26px]">
@@ -339,12 +408,12 @@
                 </p>
             </div>
 
-            <div class="mx-auto grid max-w-[1280px] grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-4 lg:gap-8">
+            <div class="mx-auto grid max-w-[1280px] grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-4 lg:gap-8 reveal-delay-2">
                 <!-- Lab Item 1 -->
-                <div class="flex min-h-[240px] flex-col justify-between border border-border bg-white p-6 transition-shadow hover:shadow-md sm:min-h-[260px] sm:p-8 md:h-[292px] md:min-h-0">
+                <div class="flex min-h-[240px] flex-col justify-between border border-border bg-white p-6 transition-all duration-500 hover:shadow-lg hover:-translate-y-1 sm:min-h-[260px] sm:p-8 md:h-[292px] md:min-h-0 group">
                     <div class="flex justify-between items-start">
-                        <div class="w-10 h-10 bg-[#fafafa] rounded-full flex items-center justify-center">
-                            <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
+                        <div class="w-10 h-10 bg-[#fafafa] rounded-full flex items-center justify-center transition-colors duration-500 group-hover:bg-primary group-hover:text-white text-primary">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
                         </div>
                         <span class="font-mono text-[10px] text-placeholder">#exp.01</span>
                     </div>
@@ -354,10 +423,10 @@
                     </div>
                 </div>
                 <!-- Lab Item 2 -->
-                <div class="flex min-h-[240px] flex-col justify-between border border-border bg-white p-6 transition-shadow hover:shadow-md sm:min-h-[260px] sm:p-8 md:h-[292px] md:min-h-0">
+                <div class="flex min-h-[240px] flex-col justify-between border border-border bg-white p-6 transition-all duration-500 hover:shadow-lg hover:-translate-y-1 sm:min-h-[260px] sm:p-8 md:h-[292px] md:min-h-0 group">
                     <div class="flex justify-between items-start">
-                        <div class="w-10 h-10 bg-[#fafafa] rounded-full flex items-center justify-center">
-                            <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
+                        <div class="w-10 h-10 bg-[#fafafa] rounded-full flex items-center justify-center transition-colors duration-500 group-hover:bg-primary group-hover:text-white text-primary">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
                         </div>
                         <span class="font-mono text-[10px] text-placeholder">#exp.02</span>
                     </div>
@@ -367,10 +436,10 @@
                     </div>
                 </div>
                 <!-- Lab Item 3 -->
-                <div class="flex min-h-[240px] flex-col justify-between border border-border bg-white p-6 transition-shadow hover:shadow-md sm:min-h-[260px] sm:p-8 md:h-[292px] md:min-h-0">
+                <div class="flex min-h-[240px] flex-col justify-between border border-border bg-white p-6 transition-all duration-500 hover:shadow-lg hover:-translate-y-1 sm:min-h-[260px] sm:p-8 md:h-[292px] md:min-h-0 group">
                     <div class="flex justify-between items-start">
-                        <div class="w-10 h-10 bg-[#fafafa] rounded-full flex items-center justify-center">
-                            <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
+                        <div class="w-10 h-10 bg-[#fafafa] rounded-full flex items-center justify-center transition-colors duration-500 group-hover:bg-primary group-hover:text-white text-primary">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
                         </div>
                         <span class="font-mono text-[10px] text-placeholder">#exp.03</span>
                     </div>
@@ -380,10 +449,10 @@
                     </div>
                 </div>
                 <!-- Lab Item 4 -->
-                <div class="flex min-h-[240px] flex-col justify-between border border-border bg-white p-6 transition-shadow hover:shadow-md sm:min-h-[260px] sm:p-8 md:h-[292px] md:min-h-0">
+                <div class="flex min-h-[240px] flex-col justify-between border border-border bg-white p-6 transition-all duration-500 hover:shadow-lg hover:-translate-y-1 sm:min-h-[260px] sm:p-8 md:h-[292px] md:min-h-0 group">
                     <div class="flex justify-between items-start">
-                        <div class="w-10 h-10 bg-[#fafafa] rounded-full flex items-center justify-center">
-                            <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
+                        <div class="w-10 h-10 bg-[#fafafa] rounded-full flex items-center justify-center transition-colors duration-500 group-hover:bg-primary group-hover:text-white text-primary">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
                         </div>
                         <span class="font-mono text-[10px] text-placeholder">#exp.04</span>
                     </div>
@@ -396,28 +465,28 @@
         </section>
 
         <!-- Quote Section -->
-        <section class="bg-white px-4 py-16 text-center sm:px-6 sm:py-24 md:px-12 md:py-32 lg:px-24 lg:py-40">
+        <section class="bg-white px-4 py-16 text-center sm:px-6 sm:py-24 md:px-12 md:py-32 lg:px-24 lg:py-40 reveal">
             <div class="mx-auto max-w-[896px]">
-                <blockquote class="mb-10 font-serif text-[clamp(1.25rem,3.5vw+0.5rem,3rem)] font-medium italic leading-snug sm:mb-14 sm:leading-tight md:mb-16 md:leading-[1.35]">
+                <blockquote class="mb-10 font-serif text-[clamp(1.25rem,3.5vw+0.5rem,3rem)] font-medium italic leading-snug sm:mb-14 sm:leading-tight md:mb-16 md:leading-[1.35] reveal-delay-1">
                     「完璧とは、これ以上加えるものがない状態ではなく、これ以上削るものがない状態のことである。」
                 </blockquote>
-                <cite class="text-[9px] font-bold uppercase not-italic tracking-[4.12px] sm:text-[10px]">Antoine de Saint-Exupéry</cite>
+                <cite class="text-[9px] font-bold uppercase not-italic tracking-[4.12px] sm:text-[10px] reveal-delay-2">Antoine de Saint-Exupéry</cite>
             </div>
         </section>
 
         <!-- Footer -->
-        <footer id="contact" class="overflow-hidden bg-white px-4 pb-16 pt-24 sm:px-6 sm:pb-20 sm:pt-32 md:px-12 md:pt-40 lg:px-24 lg:pb-20 lg:pt-60">
+        <footer id="contact" class="overflow-hidden bg-white px-4 pb-16 pt-24 sm:px-6 sm:pb-20 sm:pt-32 md:px-12 md:pt-40 lg:px-24 lg:pb-20 lg:pt-60 reveal">
             <div class="mx-auto mb-16 grid max-w-[1280px] grid-cols-1 gap-12 sm:mb-24 lg:mb-40 lg:grid-cols-2 lg:gap-24">
-                <div class="min-w-0">
+                <div class="min-w-0 reveal-delay-1">
                     <h2 class="footer-display font-serif mb-10 sm:mb-12 lg:mb-16">
-                        <span class="font-medium text-primary">Keep </span><br>
-                        <span class="font-normal italic text-placeholder">In Touch.</span>
+                        <span class="font-medium text-primary transition-transform duration-1000 hover:translate-x-2 cursor-default inline-block">Keep </span><br>
+                        <span class="font-normal italic text-placeholder transition-transform duration-1000 hover:translate-x-4 cursor-default inline-block">In Touch.</span>
                     </h2>
                     <div class="inline-block max-w-full border-b border-primary/10 pb-2">
-                        <a href="mailto:hello@b-plum.dev" class="break-all font-serif text-xl tracking-tight transition-opacity hover:opacity-70 sm:text-2xl md:text-3xl lg:text-[36px] lg:leading-[40px] lg:tracking-[-1.8px]">hello@b-plum.dev</a>
+                        <a href="mailto:hello@b-plum.dev" class="btn-underline break-all font-serif text-xl tracking-tight transition-opacity hover:opacity-70 sm:text-2xl md:text-3xl lg:text-[36px] lg:leading-[40px] lg:tracking-[-1.8px]">hello@b-plum.dev</a>
                     </div>
                 </div>
-                <div class="flex flex-col justify-end lg:items-end">
+                <div class="flex flex-col justify-end lg:items-end reveal-delay-2">
                     <div class="mb-8 text-left lg:mb-12 lg:text-right">
                         <span class="mb-4 block text-[9px] uppercase tracking-[5.57px] text-muted sm:mb-6">Connect</span>
                         <p class="max-w-[374px] font-serif text-base italic leading-relaxed sm:text-lg sm:leading-snug">
@@ -426,10 +495,10 @@
                         </p>
                     </div>
                     <div class="flex gap-6 sm:gap-8">
-                        <a href="#" class="w-5 h-5 text-primary hover:opacity-70 transition-opacity">
+                        <a href="#" class="w-5 h-5 text-primary hover:opacity-70 transition-all duration-300 hover:-translate-y-1">
                             <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
                         </a>
-                        <a href="#" class="w-5 h-5 text-primary hover:opacity-70 transition-opacity">
+                        <a href="#" class="w-5 h-5 text-primary hover:opacity-70 transition-all duration-300 hover:-translate-y-1">
                             <svg fill="currentColor" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg>
                         </a>
                     </div>
@@ -438,16 +507,16 @@
 
             <div class="mx-auto mb-10 h-px max-w-[1280px] bg-border sm:mb-12"></div>
 
-            <div class="mx-auto flex max-w-[1280px] flex-col items-center justify-between gap-6 text-center sm:flex-row sm:items-start sm:text-left md:gap-8">
+            <div class="mx-auto flex max-w-[1280px] flex-col items-center justify-between gap-6 text-center sm:flex-row sm:items-start sm:text-left md:gap-8 reveal-delay-3">
                 <div class="flex flex-col items-center gap-2 text-[8px] font-medium uppercase tracking-[4.67px] text-muted sm:flex-row sm:flex-wrap sm:items-center sm:justify-center sm:gap-x-4 sm:text-[9px] md:justify-start">
                     <span class="max-w-[280px] leading-relaxed sm:max-w-none">© 2026 B-PLUM | PERSONAL PORTFOLIO</span>
                     <span class="hidden opacity-30 sm:inline">/</span>
                     <span class="leading-relaxed">Crafting with passion</span>
                 </div>
                 <div class="flex flex-wrap justify-center gap-8 text-[8px] font-medium uppercase tracking-[4.67px] text-muted sm:gap-12 sm:text-[9px]">
-                    <a href="#" class="min-h-[44px] inline-flex items-center hover:text-primary transition-colors">Instagram</a>
-                    <a href="#" class="min-h-[44px] inline-flex items-center hover:text-primary transition-colors">X</a>
-                    <a href="#" class="min-h-[44px] inline-flex items-center hover:text-primary transition-colors">GitHub</a>
+                    <a href="#" class="btn-underline min-h-[44px] inline-flex items-center hover:text-primary transition-colors">Instagram</a>
+                    <a href="#" class="btn-underline min-h-[44px] inline-flex items-center hover:text-primary transition-colors">X</a>
+                    <a href="#" class="btn-underline min-h-[44px] inline-flex items-center hover:text-primary transition-colors">GitHub</a>
                 </div>
             </div>
         </footer>
@@ -457,13 +526,36 @@
         (function () {
             const toggle = document.getElementById('nav-toggle');
             const menu = document.getElementById('mobile-nav');
+            const nav = document.querySelector('nav');
             const mobileLinks = menu ? menu.querySelectorAll('a[href^="#"]') : [];
+
+            // Intersection Observer for reveal effect
+            const revealObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+            // Scroll-based navigation style
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    nav.classList.add('nav-scrolled');
+                } else {
+                    nav.classList.remove('nav-scrolled');
+                }
+            });
 
             function setMenuOpen(open) {
                 if (!menu || !toggle) return;
                 menu.classList.toggle('hidden', !open);
                 toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
                 document.body.classList.toggle('nav-open', open);
+                
+                // Animate hamburger icon if needed (optional)
             }
 
             if (toggle && menu) {

@@ -116,7 +116,7 @@
 
     <main>
         <!-- Hero Section -->
-        <section class="relative bg-bg overflow-hidden px-4 pb-16 pt-[calc(81px+2rem)] sm:px-6 sm:pb-20 sm:pt-[calc(81px+3rem)] md:px-12 lg:flex lg:min-h-[876px] lg:flex-col lg:justify-center lg:px-24 lg:pb-0 lg:pt-[81px]">
+        <section class="relative bg-bg overflow-x-clip overflow-y-visible px-4 pb-16 pt-[calc(81px+2rem)] sm:px-6 sm:pb-20 sm:pt-[calc(81px+3rem)] md:px-12 lg:flex lg:min-h-[876px] lg:flex-col lg:justify-center lg:px-24 lg:pb-8 lg:pt-[81px]">
             <div class="hero-blur" aria-hidden="true"></div>
 
             <div class="relative z-10 mx-auto flex w-full max-w-[1280px] flex-col lg:block">
@@ -151,12 +151,12 @@
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Hero image: 大画面はセクション右端（パディング内側）に揃え、以前の xl:right-24 より右へ -->
-            <div class="relative z-[1] mx-auto mt-12 w-full max-w-lg overflow-hidden rounded-md shadow-[0px_40px_100px_-20px_rgba(0,0,0,0.1)] sm:mt-16 sm:max-w-xl lg:absolute lg:right-0 lg:top-20 lg:mx-0 lg:mt-0 lg:h-[min(716px,85vh)] lg:w-[min(477px,36vw)] lg:max-w-none xl:w-[477px]">
-                <div class="aspect-[3/4] w-full lg:aspect-auto lg:h-full">
-                    <img src="https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85?auto=format&fit=crop&q=80&w=800" alt="" class="h-full w-full object-cover object-center lg:object-[center_35%]" width="800" height="1067">
+                <!-- Hero image: 大画面は 1280 枠内＋右に余白で切れ防止（section 直下だと overflow で欠けやすい） -->
+                <div class="relative z-[1] mx-auto mt-12 w-full max-w-lg overflow-hidden rounded-md shadow-[0px_40px_100px_-20px_rgba(0,0,0,0.1)] sm:mt-16 sm:max-w-xl lg:absolute lg:right-6 lg:top-20 lg:mx-0 lg:mt-0 lg:h-[min(680px,80svh)] lg:w-[min(400px,36%)] lg:max-w-[min(477px,calc(100%-2rem))] xl:right-8 xl:h-[min(700px,82svh)] xl:w-[min(440px,38%)] 2xl:right-10 2xl:h-[716px] 2xl:w-[min(477px,40%)]">
+                    <div class="aspect-[3/4] w-full lg:aspect-auto lg:h-full">
+                        <img src="https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85?auto=format&fit=crop&q=80&w=800" alt="" class="h-full w-full object-cover object-center lg:object-[center_42%]" width="800" height="1067">
+                    </div>
                 </div>
             </div>
         </section>

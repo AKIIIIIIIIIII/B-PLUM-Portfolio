@@ -152,10 +152,10 @@
                     </div>
                 </div>
 
-                <!-- Hero image: object-contain でトリミングせず全体表示（余白は bg と同化） -->
-                <div class="relative z-[1] mx-auto mt-12 w-full max-w-lg overflow-hidden rounded-md bg-bg shadow-[0px_40px_100px_-20px_rgba(0,0,0,0.1)] sm:mt-16 sm:max-w-xl lg:absolute lg:right-6 lg:top-20 lg:mx-0 lg:mt-0 lg:flex lg:h-[min(680px,80svh)] lg:w-[min(400px,36%)] lg:max-w-[min(477px,calc(100%-2rem))] lg:items-center lg:justify-center xl:right-8 xl:h-[min(700px,82svh)] xl:w-[min(440px,38%)] 2xl:right-10 2xl:h-[716px] 2xl:w-[min(477px,40%)]">
-                    <div class="flex aspect-[3/4] w-full items-center justify-center lg:aspect-auto lg:h-full lg:min-h-0">
-                        <img src="https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85?auto=format&fit=crop&q=80&w=800" alt="" class="max-h-full max-w-full object-contain object-center" width="800" height="1067" decoding="async">
+                <!-- Hero image: 常に 3:4 + cover+center＝スマホと同じ画角を、PC は幅だけ拡大して等比スケール -->
+                <div class="relative z-[1] mx-auto mt-12 w-full max-w-lg overflow-hidden rounded-md shadow-[0px_40px_100px_-20px_rgba(0,0,0,0.1)] sm:mt-16 sm:max-w-xl lg:absolute lg:right-6 lg:top-20 lg:mx-0 lg:mt-0 lg:max-w-[min(477px,calc(100%-2rem))] lg:w-[min(360px,82vw)] xl:right-8 xl:w-[min(420px,36vw)] 2xl:right-10 2xl:w-[min(477px,34vw)]">
+                    <div class="relative aspect-[3/4] w-full">
+                        <img src="https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85?auto=format&fit=crop&q=80&w=800" alt="" class="absolute inset-0 h-full w-full object-cover object-center" width="800" height="1067" decoding="async">
                     </div>
                 </div>
             </div>

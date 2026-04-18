@@ -115,47 +115,54 @@
     </div>
 
     <main>
-        <!-- Hero Section -->
-        <section class="relative bg-bg overflow-x-clip overflow-y-visible px-4 pb-16 pt-[calc(81px+2rem)] sm:px-6 sm:pb-20 sm:pt-[calc(81px+3rem)] md:px-12 lg:flex lg:min-h-[876px] lg:flex-col lg:justify-center lg:px-24 lg:pb-8 lg:pt-[81px]">
+        <!-- Hero Section（Figma: 左テキスト / 右 477×716 画像・角丸6・影、1480 相当で左右約 95px・列間 ~100px） -->
+        <section class="relative bg-bg overflow-x-clip overflow-y-visible px-4 pb-16 pt-[calc(81px+2rem)] sm:px-6 sm:pb-20 sm:pt-[calc(81px+3rem)] md:px-12 lg:min-h-[876px] lg:px-[clamp(1.5rem,calc((100vw-1280px)/2),5.9375rem)] lg:pb-20 lg:pt-[81px]">
             <div class="hero-blur" aria-hidden="true"></div>
 
-            <div class="relative z-10 mx-auto flex w-full max-w-[1280px] flex-col lg:block">
-                <div class="flex items-center gap-3 sm:gap-4 mb-10 sm:mb-16 max-w-full lg:max-w-[707px]">
-                    <span class="text-[9px] font-bold uppercase tracking-widest text-secondary sm:text-[10px] shrink-0">Archive Vol.01</span>
-                    <div class="h-px min-w-0 flex-1 bg-border"></div>
-                </div>
+            <div class="relative z-10 mx-auto flex w-full max-w-[1280px] flex-col gap-0 lg:grid lg:grid-cols-[minmax(0,1fr)_minmax(280px,477px)] lg:items-start lg:justify-between lg:gap-x-[clamp(2rem,5vw,6.25rem)]">
+                <!-- 左列：コピー（Figma 707 / 512 幅の階層に近づける） -->
+                <div class="min-w-0 lg:max-w-[707px]">
+                    <div class="mb-10 flex max-w-full items-center gap-3 sm:mb-16 sm:gap-4">
+                        <span class="shrink-0 text-[9px] font-bold uppercase tracking-widest text-secondary sm:text-[10px]">Archive Vol.01</span>
+                        <div class="h-px min-w-0 flex-1 bg-border"></div>
+                    </div>
 
-                <div class="mb-12 sm:mb-20 lg:mb-24">
-                    <h1 class="font-serif hero-title mb-0">
-                        <span class="block text-primary">Silent</span>
-                        <span class="block italic text-placeholder ml-1 sm:ml-3 md:ml-5">Narrative.</span>
-                    </h1>
-                </div>
+                    <div class="mb-12 sm:mb-20 lg:mb-24">
+                        <h1 class="hero-title mb-0 font-serif">
+                            <span class="block text-primary">Silent</span>
+                            <!-- Figma: Narrative 行は約 20.4px インデント -->
+                            <span class="block pl-1 italic text-placeholder sm:pl-3 lg:pl-[20.4px]">Narrative.</span>
+                        </h1>
+                    </div>
 
-                <div class="max-w-[512px] space-y-8 sm:space-y-12">
-                    <p class="text-base font-light leading-relaxed text-lightText sm:text-lg sm:leading-[36px]">
-                        b-plumは、私の日々の思索とプログラミングを形にしたプロジェクト集です。<br class="hidden sm:inline">
-                        静寂と機能性が共鳴する、デジタルの新しい風景を追求しています。
-                    </p>
+                    <div class="max-w-[512px] space-y-8 sm:space-y-12">
+                        <p class="text-base font-light leading-relaxed text-lightText sm:text-lg sm:leading-[36px]">
+                            b-plumは、私の日々の思索とプログラミングを形にしたプロジェクト集です。<br class="hidden sm:inline">
+                            静寂と機能性が共鳴する、デジタルの新しい風景を追求しています。
+                        </p>
 
-                    <div class="flex flex-col gap-6 sm:flex-row sm:items-center sm:gap-10 lg:gap-12">
-                        <button type="button" class="min-h-[44px] self-start px-0 py-3 text-left text-primary text-[11px] font-bold uppercase tracking-[5.56px] hover:opacity-70 transition-opacity">
-                            Enter Archive
-                        </button>
-                        <div class="flex flex-wrap items-center gap-3 text-[9px] uppercase tracking-[2.87px] text-placeholder sm:gap-6">
-                            <span>Code</span>
-                            <div class="hidden h-px w-8 bg-border sm:block"></div>
-                            <span>Design</span>
-                            <div class="hidden h-px w-8 bg-border sm:block"></div>
-                            <span>Soul</span>
+                        <div class="flex flex-col gap-6 sm:flex-row sm:items-center sm:gap-10 lg:gap-12">
+                            <button type="button" class="min-h-[44px] self-start px-0 py-3 text-left text-[11px] font-bold uppercase tracking-[5.56px] text-primary hover:opacity-70 transition-opacity">
+                                Enter Archive
+                            </button>
+                            <div class="flex flex-wrap items-center gap-3 text-[9px] uppercase tracking-[2.87px] text-placeholder sm:gap-6">
+                                <span>Code</span>
+                                <div class="hidden h-px w-8 bg-border sm:block"></div>
+                                <span>Design</span>
+                                <div class="hidden h-px w-8 bg-border sm:block"></div>
+                                <span>Soul</span>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Hero image: 常に 3:4 + cover+center＝スマホと同じ画角を、PC は幅だけ拡大して等比スケール -->
-                <div class="relative z-[1] mx-auto mt-12 w-full max-w-lg overflow-hidden rounded-md shadow-[0px_40px_100px_-20px_rgba(0,0,0,0.1)] sm:mt-16 sm:max-w-xl lg:absolute lg:right-6 lg:top-20 lg:mx-0 lg:mt-0 lg:max-w-[min(477px,calc(100%-2rem))] lg:w-[min(360px,82vw)] xl:right-8 xl:w-[min(420px,36vw)] 2xl:right-10 2xl:w-[min(477px,34vw)]">
-                    <div class="relative aspect-[3/4] w-full">
-                        <img src="https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85?auto=format&fit=crop&q=80&w=800" alt="" class="absolute inset-0 h-full w-full object-cover object-center" width="800" height="1067" decoding="async">
+                <!-- 右列：Figma 477.33×715.99、top ~80 → lg:mt-20 で上寄せ、角丸 6px・影 -->
+                <div class="relative z-[1] mx-auto mt-12 w-full max-w-lg shrink-0 sm:mt-16 sm:max-w-xl lg:mx-0 lg:mt-20 lg:w-full lg:max-w-[477px]">
+                    <div class="relative w-full overflow-hidden rounded-[6px] shadow-[0px_40px_100px_-20px_rgba(0,0,0,0.1)]">
+                        <!-- Figma 比率 477:716（3:4 ではない） -->
+                        <div class="relative aspect-[477/716] w-full">
+                            <img src="https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85?auto=format&fit=crop&q=80&w=800" alt="" class="absolute inset-0 h-full w-full object-cover object-center" width="800" height="1067" decoding="async">
+                        </div>
                     </div>
                 </div>
             </div>

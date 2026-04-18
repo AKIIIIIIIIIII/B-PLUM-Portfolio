@@ -156,11 +156,10 @@
                     </div>
                 </div>
 
-                <!-- 右列：Figma 477.33×715.99、top ~80 → lg:mt-20 で上寄せ、角丸 6px・影 -->
+                <!-- 右列：Figma 4:5 ノードどおり幅~477・角丸6・影。縦716は実画面で長すぎるため高さを抑え cover でトリミング -->
                 <div class="relative z-[1] mx-auto mt-12 w-full max-w-lg shrink-0 sm:mt-16 sm:max-w-xl lg:mx-0 lg:mt-20 lg:w-full lg:max-w-[477px]">
                     <div class="relative w-full overflow-hidden rounded-[6px] shadow-[0px_40px_100px_-20px_rgba(0,0,0,0.1)]">
-                        <!-- Figma 比率 477:716（3:4 ではない） -->
-                        <div class="relative aspect-[477/716] w-full">
+                        <div class="relative mx-auto h-[min(52svh,440px)] w-full max-w-[477px] sm:h-[min(50svh,480px)] lg:mx-0 lg:h-[min(600px,58svh)]">
                             <img src="https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85?auto=format&fit=crop&q=80&w=800" alt="" class="absolute inset-0 h-full w-full object-cover object-center" width="800" height="1067" decoding="async">
                         </div>
                     </div>

@@ -43,15 +43,25 @@
         }
         .hero-blur {
             position: absolute;
-            top: 302px;
-            left: 882px;
-            width: 662px;
-            height: 662px;
+            top: 15%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: min(90vw, 420px);
+            height: min(90vw, 420px);
             background-color: #e8eae3;
             border-radius: 16777200px;
             filter: blur(120px);
             opacity: 0.3;
             z-index: 0;
+        }
+        @media (min-width: 1024px) {
+            .hero-blur {
+                top: 302px;
+                left: 882px;
+                transform: none;
+                width: 662px;
+                height: 662px;
+            }
         }
         .nav-glass {
             background-color: rgba(255, 255, 255, 0.8);
@@ -64,91 +74,115 @@
             -webkit-text-stroke: 1px #d4d4d4;
             color: transparent;
         }
+        .hero-title {
+            font-size: clamp(2.75rem, 10vw + 0.5rem, 8.5rem);
+            line-height: 0.92;
+            letter-spacing: clamp(-0.12em, -0.5vw, -0.05em);
+        }
+        .footer-display {
+            font-size: clamp(3rem, 12vw + 0.5rem, 12rem);
+            line-height: 0.85;
+            letter-spacing: clamp(-0.06em, -0.8vw, -0.05em);
+        }
+        body.nav-open {
+            overflow: hidden;
+        }
     </style>
 </head>
 <body class="font-sans">
     <!-- Navigation -->
-    <nav class="fixed top-0 left-0 w-full h-[81px] nav-glass border-b border-border z-50 px-16 flex items-center justify-between">
-        <div class="flex items-center gap-3">
-            <div class="w-8 h-8 bg-primary rounded-md flex items-center justify-center">
+    <nav class="fixed top-0 left-0 w-full h-[81px] nav-glass border-b border-border z-50 px-4 sm:px-8 lg:px-16 flex items-center justify-between gap-4" aria-label="Primary">
+        <a href="#" class="flex items-center gap-3 min-w-0 shrink-0">
+            <div class="w-8 h-8 bg-primary rounded-md flex items-center justify-center shrink-0">
                 <span class="font-serif italic text-white text-[10px]">bp</span>
             </div>
-            <span class="font-serif italic text-xl tracking-[2px]">b-plum</span>
-        </div>
-        <div class="hidden md:flex gap-12">
+            <span class="font-serif italic text-lg sm:text-xl tracking-[2px] truncate">b-plum</span>
+        </a>
+        <div class="hidden md:flex gap-8 lg:gap-12 shrink-0">
             <a href="#works" class="text-[10px] font-medium uppercase tracking-[4.12px] text-muted hover:text-primary transition-colors">Works</a>
             <a href="#laboratory" class="text-[10px] font-medium uppercase tracking-[4.12px] text-muted hover:text-primary transition-colors">Laboratory</a>
             <a href="#contact" class="text-[10px] font-medium uppercase tracking-[4.12px] text-muted hover:text-primary transition-colors">Contact</a>
         </div>
+        <button type="button" id="nav-toggle" class="md:hidden inline-flex h-10 w-10 items-center justify-center rounded-md border border-border text-primary hover:bg-black/5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary" aria-expanded="false" aria-controls="mobile-nav">
+            <span class="sr-only">メニューを開く</span>
+            <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
     </nav>
+    <div id="mobile-nav" class="fixed inset-x-0 top-[81px] z-40 hidden flex-col gap-1 border-b border-border bg-white/95 px-4 py-4 shadow-lg backdrop-blur-md md:hidden" role="dialog" aria-label="モバイルメニュー">
+        <a href="#works" class="nav-mobile-link block rounded-md px-4 py-3 text-sm font-medium uppercase tracking-[4.12px] text-muted hover:bg-bg hover:text-primary">Works</a>
+        <a href="#laboratory" class="nav-mobile-link block rounded-md px-4 py-3 text-sm font-medium uppercase tracking-[4.12px] text-muted hover:bg-bg hover:text-primary">Laboratory</a>
+        <a href="#contact" class="nav-mobile-link block rounded-md px-4 py-3 text-sm font-medium uppercase tracking-[4.12px] text-muted hover:bg-bg hover:text-primary">Contact</a>
+    </div>
 
     <main>
         <!-- Hero Section -->
-        <section class="relative min-h-[876px] bg-bg overflow-hidden flex flex-col justify-center px-24">
-            <div class="hero-blur"></div>
-            
-            <div class="relative z-10">
-                <div class="flex items-center gap-4 mb-16 max-w-[707px]">
-                    <span class="text-[10px] font-bold uppercase tracking-widest text-secondary whitespace-nowrap">Archive Vol.01</span>
-                    <div class="h-px flex-grow bg-border"></div>
+        <section class="relative bg-bg overflow-hidden px-4 pb-16 pt-[calc(81px+2rem)] sm:px-6 sm:pb-20 sm:pt-[calc(81px+3rem)] md:px-12 lg:flex lg:min-h-[876px] lg:flex-col lg:justify-center lg:px-24 lg:pb-0 lg:pt-[81px]">
+            <div class="hero-blur" aria-hidden="true"></div>
+
+            <div class="relative z-10 mx-auto flex w-full max-w-[1280px] flex-col lg:block">
+                <div class="flex items-center gap-3 sm:gap-4 mb-10 sm:mb-16 max-w-full lg:max-w-[707px]">
+                    <span class="text-[9px] font-bold uppercase tracking-widest text-secondary sm:text-[10px] shrink-0">Archive Vol.01</span>
+                    <div class="h-px min-w-0 flex-1 bg-border"></div>
                 </div>
 
-                <div class="mb-24">
-                    <h1 class="font-serif text-[136px] leading-[122.4px] tracking-tightest mb-0">
+                <div class="mb-12 sm:mb-20 lg:mb-24">
+                    <h1 class="font-serif hero-title mb-0">
                         <span class="block text-primary">Silent</span>
-                        <span class="block italic text-placeholder ml-5">Narrative.</span>
+                        <span class="block italic text-placeholder ml-1 sm:ml-3 md:ml-5">Narrative.</span>
                     </h1>
                 </div>
 
-                <div class="max-w-[512px] space-y-12">
-                    <p class="text-lg font-light leading-[36px] text-lightText">
-                        b-plumは、私の日々の思索とプログラミングを形にしたプロジェクト集です。<br>
+                <div class="max-w-[512px] space-y-8 sm:space-y-12">
+                    <p class="text-base font-light leading-relaxed text-lightText sm:text-lg sm:leading-[36px]">
+                        b-plumは、私の日々の思索とプログラミングを形にしたプロジェクト集です。<br class="hidden sm:inline">
                         静寂と機能性が共鳴する、デジタルの新しい風景を追求しています。
                     </p>
-                    
-                    <div class="flex items-center gap-12">
-                        <button class="px-0 py-3 text-primary text-[11px] font-bold uppercase tracking-[5.56px] hover:opacity-70 transition-opacity">
+
+                    <div class="flex flex-col gap-6 sm:flex-row sm:items-center sm:gap-10 lg:gap-12">
+                        <button type="button" class="min-h-[44px] self-start px-0 py-3 text-left text-primary text-[11px] font-bold uppercase tracking-[5.56px] hover:opacity-70 transition-opacity">
                             Enter Archive
                         </button>
-                        <div class="flex items-center gap-6 text-[9px] uppercase tracking-[2.87px] text-placeholder">
+                        <div class="flex flex-wrap items-center gap-3 text-[9px] uppercase tracking-[2.87px] text-placeholder sm:gap-6">
                             <span>Code</span>
-                            <div class="w-8 h-px bg-border"></div>
+                            <div class="hidden h-px w-8 bg-border sm:block"></div>
                             <span>Design</span>
-                            <div class="w-8 h-px bg-border"></div>
+                            <div class="hidden h-px w-8 bg-border sm:block"></div>
                             <span>Soul</span>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Hero Image -->
-            <div class="hidden lg:block absolute top-20 right-24 w-[477px] h-[716px] rounded-md overflow-hidden shadow-[0px_40px_100px_-20px_rgba(0,0,0,0.1)]">
-                <img src="https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85?auto=format&fit=crop&q=80&w=800" alt="Hero Image" class="w-full h-full object-cover">
+                <!-- Hero Image: stacked on small screens, absolute on large -->
+                <div class="relative mt-12 w-full max-w-lg self-center overflow-hidden rounded-md shadow-[0px_40px_100px_-20px_rgba(0,0,0,0.1)] sm:mt-16 sm:max-w-xl lg:absolute lg:right-6 lg:top-20 lg:mt-0 lg:h-[716px] lg:w-[min(477px,42vw)] lg:max-w-none xl:right-24">
+                    <div class="aspect-[3/4] w-full lg:aspect-auto lg:h-full">
+                        <img src="https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85?auto=format&fit=crop&q=80&w=800" alt="" class="h-full w-full object-cover" width="800" height="1067">
+                    </div>
+                </div>
             </div>
         </section>
 
         <!-- About Section -->
-        <section class="py-40 px-24 bg-white">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-24 items-start">
-                <div class="relative aspect-square bg-[#fafafa] rounded-md overflow-hidden shadow-[0px_25px_50px_-12px_rgba(0,0,0,0.25)]">
-                    <img src="https://images.unsplash.com/photo-1516339901600-2e1a62986307?auto=format&fit=crop&q=80&w=800" alt="About Image" class="w-full h-full object-cover">
+        <section class="bg-white py-16 sm:py-24 md:py-32 lg:py-40 px-4 sm:px-6 md:px-12 lg:px-24">
+            <div class="mx-auto grid max-w-[1280px] grid-cols-1 items-start gap-12 sm:gap-16 lg:grid-cols-2 lg:gap-24">
+                <div class="relative aspect-[4/5] w-full max-w-xl bg-[#fafafa] sm:aspect-square lg:max-w-none overflow-hidden rounded-md shadow-[0px_25px_50px_-12px_rgba(0,0,0,0.25)]">
+                    <img src="https://images.unsplash.com/photo-1516339901600-2e1a62986307?auto=format&fit=crop&q=80&w=800" alt="About" class="h-full w-full object-cover" width="800" height="800">
                 </div>
-                <div class="pt-14">
-                    <span class="text-[9px] font-bold uppercase tracking-[4.67px] text-secondary block mb-6">About Me</span>
-                    <h2 class="font-serif text-[72px] leading-[90px] mb-12">
-                        <span class="font-medium">コードで、</span><br>
-                        <span class="italic font-normal">体温</span><span class="font-medium">を届ける。</span>
+                <div class="pt-0 lg:pt-14">
+                    <span class="mb-4 block text-[9px] font-bold uppercase tracking-[4.67px] text-secondary sm:mb-6">About Me</span>
+                    <h2 class="mb-8 font-serif text-[clamp(2rem,5vw+0.5rem,4.5rem)] font-medium leading-[1.15] sm:mb-12 sm:leading-tight">
+                        <span>コードで、</span><br>
+                        <span class="italic font-normal">体温</span><span>を届ける。</span>
                     </h2>
-                    <p class="text-lg font-light leading-[29.2px] text-lightText mb-16 max-w-[592px]">
+                    <p class="mb-10 max-w-[592px] text-base font-light leading-relaxed text-lightText sm:mb-16 sm:text-lg sm:leading-[29.2px]">
                         b-plumは、私のデジタルな実験と創造の場です. ウェブアプリは単なるツールの集まりではありません. それは、作り手の思索がユーザーと交差する「空間」だと考えています.
                     </p>
-                    <div class="flex gap-24">
+                    <div class="flex flex-wrap gap-x-12 gap-y-8 sm:gap-24">
                         <div>
-                            <span class="font-serif text-[30px] font-medium block mb-2">20+</span>
+                            <span class="mb-2 block font-serif text-2xl font-medium sm:text-[30px]">20+</span>
                             <span class="text-[10px] uppercase tracking-[1.12px] text-muted">Personal Projects</span>
                         </div>
                         <div>
-                            <span class="font-serif text-[30px] font-medium block mb-2">5y+</span>
+                            <span class="mb-2 block font-serif text-2xl font-medium sm:text-[30px]">5y+</span>
                             <span class="text-[10px] uppercase tracking-[1.12px] text-muted">Dev Experience</span>
                         </div>
                     </div>
@@ -157,10 +191,10 @@
         </section>
 
         <!-- Features Section -->
-        <section class="py-40 px-24 bg-white">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <section class="bg-white py-16 sm:py-24 md:py-32 lg:py-40 px-4 sm:px-6 md:px-12 lg:px-24">
+            <div class="mx-auto grid max-w-[1280px] grid-cols-1 gap-6 sm:gap-8 md:grid-cols-2 lg:grid-cols-3">
                 <!-- Feature 1 -->
-                <div class="p-10 border border-border rounded-md hover:shadow-sm transition-shadow">
+                <div class="rounded-md border border-border p-6 transition-shadow hover:shadow-sm sm:p-8 lg:p-10">
                     <div class="w-12 h-12 bg-[#fafafa] rounded-md flex items-center justify-center mb-12">
                         <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
                     </div>
@@ -174,7 +208,7 @@
                     </p>
                 </div>
                 <!-- Feature 2 -->
-                <div class="p-10 border border-border rounded-md hover:shadow-sm transition-shadow">
+                <div class="rounded-md border border-border p-6 transition-shadow hover:shadow-sm sm:p-8 lg:p-10">
                     <div class="w-12 h-12 bg-[#fafafa] rounded-md flex items-center justify-center mb-12">
                         <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"></path></svg>
                     </div>
@@ -188,7 +222,7 @@
                     </p>
                 </div>
                 <!-- Feature 3 -->
-                <div class="p-10 border border-border rounded-md hover:shadow-sm transition-shadow">
+                <div class="rounded-md border border-border p-6 transition-shadow hover:shadow-sm sm:p-8 md:col-span-2 lg:col-span-1 lg:p-10">
                     <div class="w-12 h-12 bg-[#fafafa] rounded-md flex items-center justify-center mb-12">
                         <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
                     </div>
@@ -205,72 +239,72 @@
         </section>
 
         <!-- Works Section -->
-        <section id="works" class="py-40 px-24 bg-white">
-            <div class="flex flex-col md:flex-row justify-between items-start mb-24">
-                <div>
-                    <span class="text-[9px] font-normal uppercase tracking-[5.57px] text-placeholder block mb-6">Personal Works</span>
-                    <h2 class="font-serif text-[96px] leading-[120px] font-medium mb-8">Selected Projects.</h2>
+        <section id="works" class="bg-white py-16 sm:py-24 md:py-32 lg:py-40 px-4 sm:px-6 md:px-12 lg:px-24">
+            <div class="mx-auto mb-12 flex max-w-[1280px] flex-col items-start gap-6 sm:mb-16 md:mb-24 md:flex-row md:justify-between md:gap-10">
+                <div class="min-w-0">
+                    <span class="mb-4 block text-[9px] font-normal uppercase tracking-[5.57px] text-placeholder sm:mb-6">Personal Works</span>
+                    <h2 class="font-serif text-[clamp(2.25rem,6vw+0.5rem,6rem)] font-medium leading-[1.1] sm:leading-tight">Selected Projects.</h2>
                 </div>
-                <p class="max-w-[384px] text-sm font-light leading-[22.8px] text-muted mt-16">
+                <p class="max-w-[384px] text-sm font-light leading-relaxed text-muted md:mt-12 md:shrink-0">
                     思考の軌跡。私が情熱を注いで制作したウェブアプリの一部をご紹介します。
                 </p>
             </div>
 
-            <div class="space-y-8">
+            <div class="mx-auto max-w-[1280px] space-y-6 sm:space-y-8">
                 <!-- Project 1 -->
-                <div class="relative h-[582px] rounded-md overflow-hidden group">
-                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1200" alt="Project 1" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
-                    <div class="absolute inset-0 project-overlay flex flex-col items-center justify-center text-center px-8">
-                        <span class="text-[10px] uppercase tracking-[6.12px] text-white/60 mb-6">Side Project</span>
-                        <h3 class="font-serif italic font-medium text-[72px] leading-[72px] text-white mb-8">Vinter Analytics</h3>
-                        <div class="flex gap-4 mb-12">
-                            <span class="px-5 py-2 border border-white/20 rounded-full text-[9px] text-white/80 uppercase tracking-[1.07px]">Next.js</span>
-                            <span class="px-5 py-2 border border-white/20 rounded-full text-[9px] text-white/80 uppercase tracking-[1.07px]">D3.js</span>
-                            <span class="px-5 py-2 border border-white/20 rounded-full text-[9px] text-white/80 uppercase tracking-[1.07px]">Analytics</span>
+                <div class="group relative min-h-[22rem] overflow-hidden rounded-md sm:min-h-[28rem] lg:h-[582px] lg:min-h-0">
+                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1200" alt="Vinter Analytics" class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" width="1200" height="800">
+                    <div class="project-overlay absolute inset-0 flex min-h-full flex-col items-center justify-center px-4 py-12 text-center sm:px-8 lg:py-16">
+                        <span class="mb-4 text-[9px] uppercase tracking-[6.12px] text-white/60 sm:mb-6 sm:text-[10px]">Side Project</span>
+                        <h3 class="mb-6 max-w-[95vw] font-serif text-[clamp(1.75rem,6vw+0.5rem,4.5rem)] font-medium italic leading-none text-white sm:mb-8">Vinter Analytics</h3>
+                        <div class="mb-8 flex max-w-full flex-wrap justify-center gap-2 sm:mb-12 sm:gap-4">
+                            <span class="rounded-full border border-white/20 px-3 py-2 text-[8px] uppercase tracking-[1.07px] text-white/80 sm:px-5 sm:text-[9px]">Next.js</span>
+                            <span class="rounded-full border border-white/20 px-3 py-2 text-[8px] uppercase tracking-[1.07px] text-white/80 sm:px-5 sm:text-[9px]">D3.js</span>
+                            <span class="rounded-full border border-white/20 px-3 py-2 text-[8px] uppercase tracking-[1.07px] text-white/80 sm:px-5 sm:text-[9px]">Analytics</span>
                         </div>
-                        <button class="px-10 py-3 bg-white text-primary text-[10px] font-bold uppercase tracking-[3.12px] rounded-full hover:bg-white/90 transition-colors">
+                        <button type="button" class="min-h-[44px] rounded-full bg-white px-8 py-3 text-[10px] font-bold uppercase tracking-[3.12px] text-primary transition-colors hover:bg-white/90 sm:px-10">
                             View Project
                         </button>
                     </div>
                 </div>
                 <!-- Project 2 -->
-                <div class="relative h-[582px] rounded-md overflow-hidden group">
-                    <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=1200" alt="Project 2" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
-                    <div class="absolute inset-0 project-overlay flex flex-col items-center justify-center text-center px-8">
-                        <span class="text-[10px] uppercase tracking-[6.12px] text-white/60 mb-6">Experimental Tool</span>
-                        <h3 class="font-serif italic font-medium text-[72px] leading-[72px] text-white mb-8">Luma Editor</h3>
-                        <div class="flex gap-4 mb-12">
-                            <span class="px-5 py-2 border border-white/20 rounded-full text-[9px] text-white/80 uppercase tracking-[1.07px]">Rust</span>
-                            <span class="px-5 py-2 border border-white/20 rounded-full text-[9px] text-white/80 uppercase tracking-[1.07px]">Wasm</span>
-                            <span class="px-5 py-2 border border-white/20 rounded-full text-[9px] text-white/80 uppercase tracking-[1.07px]">Editor</span>
+                <div class="group relative min-h-[22rem] overflow-hidden rounded-md sm:min-h-[28rem] lg:h-[582px] lg:min-h-0">
+                    <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=1200" alt="Luma Editor" class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" width="1200" height="800">
+                    <div class="project-overlay absolute inset-0 flex min-h-full flex-col items-center justify-center px-4 py-12 text-center sm:px-8 lg:py-16">
+                        <span class="mb-4 text-[9px] uppercase tracking-[6.12px] text-white/60 sm:mb-6 sm:text-[10px]">Experimental Tool</span>
+                        <h3 class="mb-6 max-w-[95vw] font-serif text-[clamp(1.75rem,6vw+0.5rem,4.5rem)] font-medium italic leading-none text-white sm:mb-8">Luma Editor</h3>
+                        <div class="mb-8 flex max-w-full flex-wrap justify-center gap-2 sm:mb-12 sm:gap-4">
+                            <span class="rounded-full border border-white/20 px-3 py-2 text-[8px] uppercase tracking-[1.07px] text-white/80 sm:px-5 sm:text-[9px]">Rust</span>
+                            <span class="rounded-full border border-white/20 px-3 py-2 text-[8px] uppercase tracking-[1.07px] text-white/80 sm:px-5 sm:text-[9px]">Wasm</span>
+                            <span class="rounded-full border border-white/20 px-3 py-2 text-[8px] uppercase tracking-[1.07px] text-white/80 sm:px-5 sm:text-[9px]">Editor</span>
                         </div>
-                        <button class="px-10 py-3 bg-white text-primary text-[10px] font-bold uppercase tracking-[3.12px] rounded-full hover:bg-white/90 transition-colors">
+                        <button type="button" class="min-h-[44px] rounded-full bg-white px-8 py-3 text-[10px] font-bold uppercase tracking-[3.12px] text-primary transition-colors hover:bg-white/90 sm:px-10">
                             View Project
                         </button>
                     </div>
                 </div>
             </div>
 
-            <div class="flex justify-center mt-20">
-                <button class="px-12 py-5 border border-border rounded-full text-[11px] font-bold uppercase tracking-[4.46px] hover:bg-primary hover:text-white transition-all">
+            <div class="mx-auto mt-12 flex max-w-[1280px] justify-center sm:mt-16 md:mt-20">
+                <button type="button" class="min-h-[48px] rounded-full border border-border px-8 py-4 text-[11px] font-bold uppercase tracking-[4.46px] transition-all hover:bg-primary hover:text-white sm:px-12 sm:py-5">
                     Check GitHub
                 </button>
             </div>
         </section>
 
         <!-- Lab Section -->
-        <section id="laboratory" class="py-40 px-24 bg-[#faf9f6] border-y border-border">
-            <div class="text-center max-w-[672px] mx-auto mb-24">
-                <span class="text-[9px] uppercase tracking-[5.57px] text-placeholder block mb-6">The Lab</span>
-                <h2 class="font-serif text-[72px] leading-[90px] font-medium mb-8">Digital Experiments.</h2>
-                <p class="text-base font-light leading-[26px] text-lightText tracking-[-0.31px]">
+        <section id="laboratory" class="border-y border-border bg-[#faf9f6] py-16 sm:py-24 md:py-32 lg:py-40 px-4 sm:px-6 md:px-12 lg:px-24">
+            <div class="mx-auto mb-12 max-w-[672px] text-center sm:mb-16 md:mb-24">
+                <span class="mb-4 block text-[9px] uppercase tracking-[5.57px] text-placeholder sm:mb-6">The Lab</span>
+                <h2 class="mb-6 font-serif text-[clamp(2rem,5vw+0.5rem,4.5rem)] font-medium leading-tight sm:mb-8 sm:leading-[1.15]">Digital Experiments.</h2>
+                <p class="text-sm font-light leading-relaxed text-lightText tracking-[-0.31px] sm:text-base sm:leading-[26px]">
                     完成されたプロダクトの裏側にある、無数の試行錯誤。b-plum Labでは、最新技術を用いた実験的な実装やコードの断片を公開しています。
                 </p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div class="mx-auto grid max-w-[1280px] grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-4 lg:gap-8">
                 <!-- Lab Item 1 -->
-                <div class="bg-white border border-border p-8 h-[292px] flex flex-col justify-between hover:shadow-md transition-shadow">
+                <div class="flex min-h-[240px] flex-col justify-between border border-border bg-white p-6 transition-shadow hover:shadow-md sm:min-h-[260px] sm:p-8 md:h-[292px] md:min-h-0">
                     <div class="flex justify-between items-start">
                         <div class="w-10 h-10 bg-[#fafafa] rounded-full flex items-center justify-center">
                             <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
@@ -283,7 +317,7 @@
                     </div>
                 </div>
                 <!-- Lab Item 2 -->
-                <div class="bg-white border border-border p-8 h-[292px] flex flex-col justify-between hover:shadow-md transition-shadow">
+                <div class="flex min-h-[240px] flex-col justify-between border border-border bg-white p-6 transition-shadow hover:shadow-md sm:min-h-[260px] sm:p-8 md:h-[292px] md:min-h-0">
                     <div class="flex justify-between items-start">
                         <div class="w-10 h-10 bg-[#fafafa] rounded-full flex items-center justify-center">
                             <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
@@ -296,7 +330,7 @@
                     </div>
                 </div>
                 <!-- Lab Item 3 -->
-                <div class="bg-white border border-border p-8 h-[292px] flex flex-col justify-between hover:shadow-md transition-shadow">
+                <div class="flex min-h-[240px] flex-col justify-between border border-border bg-white p-6 transition-shadow hover:shadow-md sm:min-h-[260px] sm:p-8 md:h-[292px] md:min-h-0">
                     <div class="flex justify-between items-start">
                         <div class="w-10 h-10 bg-[#fafafa] rounded-full flex items-center justify-center">
                             <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
@@ -309,7 +343,7 @@
                     </div>
                 </div>
                 <!-- Lab Item 4 -->
-                <div class="bg-white border border-border p-8 h-[292px] flex flex-col justify-between hover:shadow-md transition-shadow">
+                <div class="flex min-h-[240px] flex-col justify-between border border-border bg-white p-6 transition-shadow hover:shadow-md sm:min-h-[260px] sm:p-8 md:h-[292px] md:min-h-0">
                     <div class="flex justify-between items-start">
                         <div class="w-10 h-10 bg-[#fafafa] rounded-full flex items-center justify-center">
                             <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
@@ -325,36 +359,36 @@
         </section>
 
         <!-- Quote Section -->
-        <section class="py-40 px-24 bg-white text-center">
-            <div class="max-w-[896px] mx-auto">
-                <blockquote class="font-serif italic font-medium text-[48px] leading-[76.8px] mb-16">
+        <section class="bg-white px-4 py-16 text-center sm:px-6 sm:py-24 md:px-12 md:py-32 lg:px-24 lg:py-40">
+            <div class="mx-auto max-w-[896px]">
+                <blockquote class="mb-10 font-serif text-[clamp(1.25rem,3.5vw+0.5rem,3rem)] font-medium italic leading-snug sm:mb-14 sm:leading-tight md:mb-16 md:leading-[1.35]">
                     「完璧とは、これ以上加えるものがない状態ではなく、これ以上削るものがない状態のことである。」
                 </blockquote>
-                <cite class="text-[10px] font-bold uppercase tracking-[4.12px] not-italic">Antoine de Saint-Exupéry</cite>
+                <cite class="text-[9px] font-bold uppercase not-italic tracking-[4.12px] sm:text-[10px]">Antoine de Saint-Exupéry</cite>
             </div>
         </section>
 
         <!-- Footer -->
-        <footer id="contact" class="pt-60 pb-20 px-24 bg-white overflow-hidden">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-24 mb-40">
-                <div>
-                    <h2 class="font-serif text-[192px] leading-[153.6px] tracking-[-9.6px] mb-16">
+        <footer id="contact" class="overflow-hidden bg-white px-4 pb-16 pt-24 sm:px-6 sm:pb-20 sm:pt-32 md:px-12 md:pt-40 lg:px-24 lg:pb-20 lg:pt-60">
+            <div class="mx-auto mb-16 grid max-w-[1280px] grid-cols-1 gap-12 sm:mb-24 lg:mb-40 lg:grid-cols-2 lg:gap-24">
+                <div class="min-w-0">
+                    <h2 class="footer-display font-serif mb-10 sm:mb-12 lg:mb-16">
                         <span class="font-medium text-primary">Keep </span><br>
-                        <span class="text-placeholder italic font-normal">In Touch.</span>
+                        <span class="font-normal italic text-placeholder">In Touch.</span>
                     </h2>
-                    <div class="inline-block border-b border-primary/10 pb-2">
-                        <a href="mailto:hello@b-plum.dev" class="font-serif text-[36px] tracking-[-1.8px] leading-[40px] hover:opacity-70 transition-opacity">hello@b-plum.dev</a>
+                    <div class="inline-block max-w-full border-b border-primary/10 pb-2">
+                        <a href="mailto:hello@b-plum.dev" class="break-all font-serif text-xl tracking-tight transition-opacity hover:opacity-70 sm:text-2xl md:text-3xl lg:text-[36px] lg:leading-[40px] lg:tracking-[-1.8px]">hello@b-plum.dev</a>
                     </div>
                 </div>
                 <div class="flex flex-col justify-end lg:items-end">
-                    <div class="mb-12 lg:text-right">
-                        <span class="text-[9px] uppercase tracking-[5.57px] text-muted block mb-6">Connect</span>
-                        <p class="font-serif italic text-lg leading-[20px] max-w-[374px]">
-                            Exploring the intersection of<br>
+                    <div class="mb-8 text-left lg:mb-12 lg:text-right">
+                        <span class="mb-4 block text-[9px] uppercase tracking-[5.57px] text-muted sm:mb-6">Connect</span>
+                        <p class="max-w-[374px] font-serif text-base italic leading-relaxed sm:text-lg sm:leading-snug">
+                            Exploring the intersection of<br class="hidden sm:inline">
                             art and software engineering.
                         </p>
                     </div>
-                    <div class="flex gap-8">
+                    <div class="flex gap-6 sm:gap-8">
                         <a href="#" class="w-5 h-5 text-primary hover:opacity-70 transition-opacity">
                             <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
                         </a>
@@ -365,36 +399,66 @@
                 </div>
             </div>
 
-            <div class="h-px bg-border w-full mb-12"></div>
-            
-            <div class="flex flex-col md:flex-row justify-between items-center gap-8">
-                <div class="flex items-center gap-4 text-[9px] font-medium uppercase tracking-[4.67px] text-muted">
-                    <span>© 2026 B-PLUM | PERSONAL PORTFOLIO</span>
-                    <span class="opacity-30">/</span>
-                    <span>Crafting with passion</span>
+            <div class="mx-auto mb-10 h-px max-w-[1280px] bg-border sm:mb-12"></div>
+
+            <div class="mx-auto flex max-w-[1280px] flex-col items-center justify-between gap-6 text-center sm:flex-row sm:items-start sm:text-left md:gap-8">
+                <div class="flex flex-col items-center gap-2 text-[8px] font-medium uppercase tracking-[4.67px] text-muted sm:flex-row sm:flex-wrap sm:items-center sm:justify-center sm:gap-x-4 sm:text-[9px] md:justify-start">
+                    <span class="max-w-[280px] leading-relaxed sm:max-w-none">© 2026 B-PLUM | PERSONAL PORTFOLIO</span>
+                    <span class="hidden opacity-30 sm:inline">/</span>
+                    <span class="leading-relaxed">Crafting with passion</span>
                 </div>
-                <div class="flex gap-12 text-[9px] font-medium uppercase tracking-[4.67px] text-muted">
-                    <a href="#" class="hover:text-primary transition-colors">Instagram</a>
-                    <a href="#" class="hover:text-primary transition-colors">X</a>
-                    <a href="#" class="hover:text-primary transition-colors">GitHub</a>
+                <div class="flex flex-wrap justify-center gap-8 text-[8px] font-medium uppercase tracking-[4.67px] text-muted sm:gap-12 sm:text-[9px]">
+                    <a href="#" class="min-h-[44px] inline-flex items-center hover:text-primary transition-colors">Instagram</a>
+                    <a href="#" class="min-h-[44px] inline-flex items-center hover:text-primary transition-colors">X</a>
+                    <a href="#" class="min-h-[44px] inline-flex items-center hover:text-primary transition-colors">GitHub</a>
                 </div>
             </div>
         </footer>
     </main>
 
     <script>
-        // Smooth scroll
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth'
-                    });
+        (function () {
+            const toggle = document.getElementById('nav-toggle');
+            const menu = document.getElementById('mobile-nav');
+            const mobileLinks = menu ? menu.querySelectorAll('a[href^="#"]') : [];
+
+            function setMenuOpen(open) {
+                if (!menu || !toggle) return;
+                menu.classList.toggle('hidden', !open);
+                toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+                document.body.classList.toggle('nav-open', open);
+            }
+
+            if (toggle && menu) {
+                toggle.addEventListener('click', function () {
+                    setMenuOpen(menu.classList.contains('hidden'));
+                });
+            }
+
+            mobileLinks.forEach(function (link) {
+                link.addEventListener('click', function () {
+                    setMenuOpen(false);
+                });
+            });
+
+            window.addEventListener('resize', function () {
+                if (window.matchMedia('(min-width: 768px)').matches) {
+                    setMenuOpen(false);
                 }
             });
-        });
+
+            document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
+                anchor.addEventListener('click', function (e) {
+                    const id = this.getAttribute('href');
+                    if (!id || id === '#') return;
+                    const target = document.querySelector(id);
+                    if (target) {
+                        e.preventDefault();
+                        target.scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
+            });
+        })();
     </script>
 </body>
 </html>

@@ -244,57 +244,88 @@
             </div>
         </section>
 
-        <!-- Works Section -->
+        <!-- Works Section（Figma node 4:114: Selected Projects ブロック） -->
         <section id="works" class="bg-white py-16 sm:py-24 md:py-32 lg:py-40 px-4 sm:px-6 md:px-12 lg:px-24">
-            <div class="mx-auto mb-12 flex max-w-[1280px] flex-col items-start gap-6 sm:mb-16 md:mb-24 md:flex-row md:justify-between md:gap-10">
-                <div class="min-w-0">
-                    <span class="mb-4 block text-[9px] font-normal uppercase tracking-[5.57px] text-placeholder sm:mb-6">Personal Works</span>
-                    <h2 class="font-serif text-[clamp(2.25rem,6vw+0.5rem,6rem)] font-medium leading-[1.1] sm:leading-tight">Selected Projects.</h2>
-                </div>
-                <p class="max-w-[384px] text-sm font-light leading-relaxed text-muted md:mt-12 md:shrink-0">
-                    思考の軌跡。私が情熱を注いで制作したウェブアプリの一部をご紹介します。
-                </p>
-            </div>
-
-            <div class="mx-auto max-w-[1280px] space-y-6 sm:space-y-8">
-                <!-- Project 1 -->
-                <div class="group relative min-h-[22rem] overflow-hidden rounded-md sm:min-h-[28rem] lg:h-[582px] lg:min-h-0">
-                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1200" alt="Vinter Analytics" class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" width="1200" height="800">
-                    <div class="project-overlay absolute inset-0 flex min-h-full flex-col items-center justify-center px-4 py-12 text-center sm:px-8 lg:py-16">
-                        <span class="mb-4 text-[9px] uppercase tracking-[6.12px] text-white/60 sm:mb-6 sm:text-[10px]">Side Project</span>
-                        <h3 class="mb-6 max-w-[95vw] font-serif text-[clamp(1.75rem,6vw+0.5rem,4.5rem)] font-medium italic leading-none text-white sm:mb-8">Vinter Analytics</h3>
-                        <div class="mb-8 flex max-w-full flex-wrap justify-center gap-2 sm:mb-12 sm:gap-4">
-                            <span class="rounded-full border border-white/20 px-3 py-2 text-[8px] uppercase tracking-[1.07px] text-white/80 sm:px-5 sm:text-[9px]">Next.js</span>
-                            <span class="rounded-full border border-white/20 px-3 py-2 text-[8px] uppercase tracking-[1.07px] text-white/80 sm:px-5 sm:text-[9px]">D3.js</span>
-                            <span class="rounded-full border border-white/20 px-3 py-2 text-[8px] uppercase tracking-[1.07px] text-white/80 sm:px-5 sm:text-[9px]">Analytics</span>
-                        </div>
-                        <button type="button" class="min-h-[44px] rounded-full bg-white px-8 py-3 text-[10px] font-bold uppercase tracking-[3.12px] text-primary transition-colors hover:bg-white/90 sm:px-10">
-                            View Project
-                        </button>
+            <div class="mx-auto flex w-full max-w-[1280px] flex-col gap-12 sm:gap-16 lg:gap-[96px]">
+                <!-- Header 4:115 — 高さ約144px、見出し左・説明384px幅で右寄せ風 -->
+                <header class="relative w-full lg:min-h-[144px]">
+                    <p class="mb-3 text-[9px] font-normal uppercase leading-[13.5px] tracking-[5.567px] text-[#d4d4d4] lg:absolute lg:left-0 lg:top-[8.5px] lg:mb-0">Personal Works</p>
+                    <div class="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between lg:pt-[24px]">
+                        <h2 class="max-w-[756px] font-serif text-[clamp(2.25rem,7vw,6rem)] font-medium leading-[1.1] text-primary sm:leading-tight lg:text-[96px] lg:leading-[120px]">
+                            Selected Projects.
+                        </h2>
+                        <p class="max-w-[384px] text-sm font-light leading-[22.75px] text-[#a1a1a1] tracking-[0.5496px] lg:shrink-0 lg:pb-1">
+                            思考の軌跡。私が情熱を注いで制作したウェブアプリの一部をご紹介します。
+                        </p>
                     </div>
-                </div>
-                <!-- Project 2 -->
-                <div class="group relative min-h-[22rem] overflow-hidden rounded-md sm:min-h-[28rem] lg:h-[582px] lg:min-h-0">
-                    <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=1200" alt="Luma Editor" class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" width="1200" height="800">
-                    <div class="project-overlay absolute inset-0 flex min-h-full flex-col items-center justify-center px-4 py-12 text-center sm:px-8 lg:py-16">
-                        <span class="mb-4 text-[9px] uppercase tracking-[6.12px] text-white/60 sm:mb-6 sm:text-[10px]">Experimental Tool</span>
-                        <h3 class="mb-6 max-w-[95vw] font-serif text-[clamp(1.75rem,6vw+0.5rem,4.5rem)] font-medium italic leading-none text-white sm:mb-8">Luma Editor</h3>
-                        <div class="mb-8 flex max-w-full flex-wrap justify-center gap-2 sm:mb-12 sm:gap-4">
-                            <span class="rounded-full border border-white/20 px-3 py-2 text-[8px] uppercase tracking-[1.07px] text-white/80 sm:px-5 sm:text-[9px]">Rust</span>
-                            <span class="rounded-full border border-white/20 px-3 py-2 text-[8px] uppercase tracking-[1.07px] text-white/80 sm:px-5 sm:text-[9px]">Wasm</span>
-                            <span class="rounded-full border border-white/20 px-3 py-2 text-[8px] uppercase tracking-[1.07px] text-white/80 sm:px-5 sm:text-[9px]">Editor</span>
-                        </div>
-                        <button type="button" class="min-h-[44px] rounded-full bg-white px-8 py-3 text-[10px] font-bold uppercase tracking-[3.12px] text-primary transition-colors hover:bg-white/90 sm:px-10">
-                            View Project
-                        </button>
-                    </div>
-                </div>
-            </div>
+                </header>
 
-            <div class="mx-auto mt-12 flex max-w-[1280px] justify-center sm:mt-16 md:mt-20">
-                <button type="button" class="min-h-[48px] rounded-full border border-border px-8 py-4 text-[11px] font-bold uppercase tracking-[4.46px] transition-all hover:bg-primary hover:text-white sm:px-12 sm:py-5">
-                    Check GitHub
-                </button>
+                <!-- カード列 4:121 — gap 32px、各カード h 582.398・角丸6・背景 #f5f5f5 -->
+                <div class="flex w-full flex-col gap-8 lg:gap-[32px]">
+                    <!-- Project 1 — 4:122 -->
+                    <article class="group relative w-full overflow-hidden rounded-[6px] bg-[#f5f5f5] aspect-[16/10] sm:aspect-[1280/582] lg:aspect-auto lg:h-[582px]">
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1280" alt="" class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.02]" width="1280" height="582">
+                        <div class="project-overlay absolute inset-0 flex items-center justify-center px-6 py-12 sm:px-12">
+                            <div class="flex max-w-[497px] flex-col items-center text-center">
+                                <p class="text-[10px] font-normal uppercase leading-[15px] tracking-[6.1172px] text-white/60">Side Project</p>
+                                <h3 class="mt-6 font-serif text-[clamp(2rem,7vw,4.5rem)] font-medium italic leading-none text-white lg:mt-6 lg:text-[72px] lg:leading-[72px]">Vinter Analytics</h3>
+                                <div class="mt-8 flex flex-wrap items-center justify-center gap-4 lg:mt-8">
+                                    <span class="inline-flex h-[23.5px] items-center rounded-full border border-white/20 px-4 text-[9px] font-normal uppercase leading-[13.5px] tracking-[1.067px] text-white/80">Next.js</span>
+                                    <span class="inline-flex h-[23.5px] items-center rounded-full border border-white/20 px-4 text-[9px] font-normal uppercase leading-[13.5px] tracking-[1.067px] text-white/80">D3.js</span>
+                                    <span class="inline-flex h-[23.5px] items-center rounded-full border border-white/20 px-4 text-[9px] font-normal uppercase leading-[13.5px] tracking-[1.067px] text-white/80">Analytics</span>
+                                </div>
+                                <button type="button" class="mt-8 flex h-[39px] min-w-[178px] items-center justify-center rounded-full bg-white px-6 text-[10px] font-bold uppercase leading-[15px] tracking-[3.1172px] text-primary transition-colors hover:bg-white/90 lg:mt-10">
+                                    View Project
+                                </button>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Project 2 — 4:138 -->
+                    <article class="group relative w-full overflow-hidden rounded-[6px] bg-[#f5f5f5] aspect-[16/10] sm:aspect-[1280/582] lg:aspect-auto lg:h-[582px]">
+                        <img src="https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?auto=format&fit=crop&q=80&w=1280" alt="" class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.02]" width="1280" height="582">
+                        <div class="project-overlay absolute inset-0 flex items-center justify-center px-6 py-12 sm:px-12">
+                            <div class="flex max-w-[392px] flex-col items-center text-center">
+                                <p class="text-[10px] font-normal uppercase leading-[15px] tracking-[6.1172px] text-white/60">Experimental Tool</p>
+                                <h3 class="mt-6 font-serif text-[clamp(2rem,7vw,4.5rem)] font-medium italic leading-none text-white lg:mt-6 lg:text-[72px] lg:leading-[72px]">Luma Editor</h3>
+                                <div class="mt-8 flex flex-wrap items-center justify-center gap-4 lg:mt-8">
+                                    <span class="inline-flex h-[23.5px] items-center rounded-full border border-white/20 px-4 text-[9px] font-normal uppercase leading-[13.5px] tracking-[1.067px] text-white/80">Rust</span>
+                                    <span class="inline-flex h-[23.5px] items-center rounded-full border border-white/20 px-4 text-[9px] font-normal uppercase leading-[13.5px] tracking-[1.067px] text-white/80">Wasm</span>
+                                    <span class="inline-flex h-[23.5px] items-center rounded-full border border-white/20 px-4 text-[9px] font-normal uppercase leading-[13.5px] tracking-[1.067px] text-white/80">Editor</span>
+                                </div>
+                                <button type="button" class="mt-8 flex h-[39px] min-w-[178px] items-center justify-center rounded-full bg-white px-6 text-[10px] font-bold uppercase leading-[15px] tracking-[3.1172px] text-primary transition-colors hover:bg-white/90 lg:mt-10">
+                                    View Project
+                                </button>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Project 3 — 4:154 Eco Flow System -->
+                    <article class="group relative w-full overflow-hidden rounded-[6px] bg-[#f5f5f5] aspect-[16/10] sm:aspect-[1280/582] lg:aspect-auto lg:h-[582px]">
+                        <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=1280" alt="" class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.02]" width="1280" height="582">
+                        <div class="project-overlay absolute inset-0 flex items-center justify-center px-6 py-12 sm:px-12">
+                            <div class="flex max-w-[506px] flex-col items-center text-center">
+                                <p class="text-[10px] font-normal uppercase leading-[15px] tracking-[6.1172px] text-white/60">Personal App</p>
+                                <h3 class="mt-6 font-serif text-[clamp(1.75rem,6.5vw,4rem)] font-medium italic leading-none text-white lg:mt-6 lg:text-[72px] lg:leading-[72px]">Eco Flow System</h3>
+                                <div class="mt-8 flex flex-wrap items-center justify-center gap-4 lg:mt-8">
+                                    <span class="inline-flex h-[23.5px] items-center rounded-full border border-white/20 px-4 text-[9px] font-normal uppercase leading-[13.5px] tracking-[1.067px] text-white/80">React Native</span>
+                                    <span class="inline-flex h-[23.5px] items-center rounded-full border border-white/20 px-4 text-[9px] font-normal uppercase leading-[13.5px] tracking-[1.067px] text-white/80">Firebase</span>
+                                    <span class="inline-flex h-[23.5px] items-center rounded-full border border-white/20 px-3 text-[9px] font-normal uppercase leading-[13.5px] tracking-[1.067px] text-white/80">IoT</span>
+                                </div>
+                                <button type="button" class="mt-8 flex h-[39px] min-w-[178px] items-center justify-center rounded-full bg-white px-6 text-[10px] font-bold uppercase leading-[15px] tracking-[3.1172px] text-primary transition-colors hover:bg-white/90 lg:mt-10">
+                                    View Project
+                                </button>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+
+                <!-- Check GitHub — 4:170 -->
+                <div class="flex w-full justify-center pt-12 sm:pt-16 lg:pt-20">
+                    <button type="button" class="flex h-[58.5px] w-[min(100%,238px)] items-center justify-center rounded-full border border-[#f5f5f5] bg-white text-[11px] font-bold uppercase leading-[16.5px] tracking-[4.4645px] text-[#0a0a0a] transition-colors hover:border-primary/20 hover:bg-bg">
+                        Check GitHub
+                    </button>
+                </div>
             </div>
         </section>
 

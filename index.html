@@ -151,12 +151,12 @@
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <!-- Hero Image: stacked on small screens, absolute on large -->
-                <div class="relative mt-12 w-full max-w-lg self-center overflow-hidden rounded-md shadow-[0px_40px_100px_-20px_rgba(0,0,0,0.1)] sm:mt-16 sm:max-w-xl lg:absolute lg:right-6 lg:top-20 lg:mt-0 lg:h-[716px] lg:w-[min(477px,42vw)] lg:max-w-none xl:right-24">
-                    <div class="aspect-[3/4] w-full lg:aspect-auto lg:h-full">
-                        <img src="https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85?auto=format&fit=crop&q=80&w=800" alt="" class="h-full w-full object-cover" width="800" height="1067">
-                    </div>
+            <!-- Hero image: 大画面はセクション右端（パディング内側）に揃え、以前の xl:right-24 より右へ -->
+            <div class="relative z-[1] mx-auto mt-12 w-full max-w-lg overflow-hidden rounded-md shadow-[0px_40px_100px_-20px_rgba(0,0,0,0.1)] sm:mt-16 sm:max-w-xl lg:absolute lg:right-0 lg:top-20 lg:mx-0 lg:mt-0 lg:h-[min(716px,85vh)] lg:w-[min(477px,36vw)] lg:max-w-none xl:w-[477px]">
+                <div class="aspect-[3/4] w-full lg:aspect-auto lg:h-full">
+                    <img src="https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85?auto=format&fit=crop&q=80&w=800" alt="" class="h-full w-full object-cover object-center lg:object-[center_35%]" width="800" height="1067">
                 </div>
             </div>
         </section>

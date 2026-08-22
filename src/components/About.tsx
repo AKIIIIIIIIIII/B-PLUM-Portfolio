@@ -19,7 +19,7 @@ export function About() {
           </p>
           <div className="flex flex-wrap gap-x-12 gap-y-8 sm:gap-24">
             <div>
-              <span className="mb-2 block font-serif text-3xl font-medium">3</span>
+              <span className="mb-2 block font-serif text-3xl font-medium">2</span>
               <span className="text-[10px] uppercase tracking-[1px] text-neutral-400">Personal Projects</span>
             </div>
             <div>

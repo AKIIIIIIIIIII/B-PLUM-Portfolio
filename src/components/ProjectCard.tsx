@@ -20,7 +20,7 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
 
   return (
     <Reveal delay={index === 1 ? "medium" : index === 2 ? "long" : "short"}>
-      <article className="group relative aspect-[16/10] overflow-hidden rounded-md bg-neutral-100 sm:aspect-[1280/582]">
+      <article className="group relative min-h-[18rem] overflow-hidden rounded-md bg-neutral-100 sm:aspect-[16/10] sm:min-h-0 lg:aspect-[1280/582]">
         <img src={project.coverImage.src} alt={copy.coverImage.alt} className={`absolute inset-0 h-full w-full object-cover ${coverPosition} transition-transform duration-1000 group-hover:scale-105`} width="1280" height="582" loading="lazy" />
         <div className="absolute inset-0 flex items-center justify-center bg-neutral-900/55 px-6 py-12 transition-colors duration-500 group-hover:bg-neutral-900/40 sm:px-12">
           <div className="flex max-w-[560px] flex-col items-center text-center transition-transform duration-700 group-hover:scale-105">

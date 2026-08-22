@@ -8,7 +8,7 @@ export function About() {
     <section className="bg-white py-20 sm:py-28 lg:py-40">
       <div className="site-container flex flex-col gap-12 sm:gap-16 lg:gap-20">
         <SectionHeading id="about" eyebrow={copy.about.eyebrow} title={copy.about.title} accent={copy.about.accent} />
-        <div className="grid items-start gap-12 lg:grid-cols-2 lg:gap-24">
+        <div className="grid items-start gap-12 lg:grid-cols-2 lg:gap-16 xl:gap-24">
         <Reveal className="overflow-hidden rounded-md bg-[#fafafa] shadow-[0_25px_50px_-12px_rgba(0,0,0,0.2)]">
           <img src="/images/about.jpg" alt={copy.about.imageAlt} className="aspect-[4/5] h-full w-full object-cover object-center transition-transform duration-1000 hover:scale-[1.01] sm:aspect-square" width="1200" height="800" loading="lazy" />
         </Reveal>

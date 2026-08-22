@@ -70,6 +70,14 @@ export function Header() {
     return () => window.removeEventListener("keydown", closeOnEscape);
   }, []);
 
+  useEffect(() => {
+    const previousOverflow = document.body.style.overflow;
+    if (open) document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [open]);
+
   return (
     <>
       <header className="fixed inset-x-0 top-0 z-50 flex h-20 items-center justify-between border-b border-neutral-100 bg-white/75 px-4 backdrop-blur-xl transition-shadow sm:px-8 lg:px-16">
@@ -105,7 +113,7 @@ export function Header() {
         </button>
       </header>
 
-      <nav id="mobile-navigation" className={`fixed inset-x-0 top-20 z-40 flex flex-col gap-1 border-b border-neutral-100 bg-white/95 px-4 py-4 shadow-lg backdrop-blur-md transition-[opacity,transform] md:hidden ${open ? "translate-y-0 opacity-100" : "pointer-events-none -translate-y-2 opacity-0"}`} aria-label={copy.nav.primary}>
+      <nav id="mobile-navigation" className={`fixed inset-x-0 top-20 z-40 flex max-h-[calc(100dvh-5rem)] flex-col gap-1 overflow-y-auto overscroll-contain border-b border-neutral-100 bg-white/95 px-4 pb-[calc(1rem+env(safe-area-inset-bottom))] pt-4 shadow-lg backdrop-blur-md transition-[opacity,transform] md:hidden ${open ? "translate-y-0 opacity-100" : "pointer-events-none -translate-y-2 opacity-0"}`} aria-label={copy.nav.primary}>
         {links.map((link) => (
           <Link key={link.href} to={link.href} className="rounded-md px-4 py-3 text-sm font-medium uppercase tracking-[3px] text-neutral-500 transition-colors hover:bg-[#fdfcfb] hover:text-neutral-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900" onClick={(event) => handleSectionClick(event, link.id)}>
             {link.label}

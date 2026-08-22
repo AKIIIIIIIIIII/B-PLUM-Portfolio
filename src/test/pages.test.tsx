@@ -16,11 +16,23 @@ function renderProject(path: string) {
 }
 
 describe("project routes", () => {
+  it("renders the Easy Cat Minesweeper repository action", () => {
+    renderProject("/projects/easy-cat-minesweeper");
+    const repositoryLink = screen.getByRole("link", { name: /view repository/i });
+
+    expect(screen.getByRole("heading", { name: "Easy Cat Minesweeper" })).toBeInTheDocument();
+    expect(repositoryLink).toHaveAttribute("href", "https://github.com/AKIIIIIIIIIII/B-PLUM-EasyCatMinesweeper");
+    expect(repositoryLink).toHaveAttribute("target", "_blank");
+    expect(repositoryLink).toHaveAttribute("rel", "noopener noreferrer");
+  });
+
   it("renders the Plum.B detail page", () => {
     renderProject("/projects/plum-b");
     expect(screen.getByRole("heading", { name: "Plum.B" })).toBeInTheDocument();
     expect(screen.getByRole("link", { name: /view repository/i })).toHaveAttribute("href", "https://github.com/AKIIIIIIIIIII/B-PLUM-ASK");
     expect(screen.getByRole("heading", { name: "Overview" })).toBeInTheDocument();
+    expect(screen.getAllByAltText("Plum.B hexagram result screen")).toHaveLength(1);
+    expect(screen.getByAltText("Plum.B ready-to-cast input screen")).toHaveClass("h-auto", "object-contain");
     expect(screen.getByAltText("Plum.B empty input screen")).toBeInTheDocument();
     expect(screen.getByRole("link", { name: /next project/i })).toHaveAttribute("href", "/projects/eco-flow-system");
   });

@@ -44,7 +44,7 @@ function MarkdownSection({ section }: { section: ProjectSection }) {
 function ProjectImage({ image, featured = false }: { image: Project["coverImage"]; featured?: boolean }) {
   return (
     <figure className={`overflow-hidden rounded-[2px] bg-neutral-100 ${featured ? "shadow-[0_30px_80px_-32px_rgba(0,0,0,0.35)]" : ""}`}>
-      <img src={image.src} alt={image.alt} className="h-full w-full object-cover" width="1280" height="900" loading={featured ? "eager" : "lazy"} />
+      <img src={image.src} alt={image.alt} className={`w-full ${featured ? "h-full object-cover" : "h-auto object-contain"}`} loading={featured ? "eager" : "lazy"} />
       {image.caption && <figcaption className="border-t border-neutral-200/80 px-4 py-3 text-[9px] uppercase tracking-[3px] text-neutral-400">{image.caption}</figcaption>}
     </figure>
   );
@@ -63,6 +63,7 @@ export function ProjectPage() {
   if (!project) return <NotFoundPage />;
 
   const copy = getProjectLocale(project);
+  const gallery = project.gallery?.filter((image) => image.src !== project.coverImage.src);
   const { previous, next } = getAdjacentProjects(project.slug);
   const nextCopy = next ? getProjectLocale(next) : undefined;
   const previousCopy = previous ? getProjectLocale(previous) : undefined;
@@ -75,26 +76,38 @@ export function ProjectPage() {
           <Link to="/#works" className="inline-flex min-h-11 items-center gap-3 text-[10px] font-bold uppercase tracking-[3px] text-neutral-400 transition-colors hover:text-neutral-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-neutral-900">
             <span aria-hidden="true">←</span> {labels.back}
           </Link>
-          <div className="mt-14 grid items-end gap-12 lg:grid-cols-[minmax(0,0.9fr)_minmax(360px,1.1fr)] lg:gap-20">
-            <div className="max-w-3xl">
-              <div className="mb-7 flex flex-wrap items-center gap-x-4 gap-y-2 text-[10px] font-bold uppercase tracking-[4px] text-[#7e9882]">
-                <span>{copy.category}</span><span aria-hidden="true" className="text-neutral-300">/</span><span>{project.year}</span>
-              </div>
-              <h1 className="font-serif text-[clamp(3.6rem,10vw,9.5rem)] font-medium leading-[0.88] tracking-[-0.07em]">{copy.title}</h1>
-              <p className="mt-10 max-w-xl text-base font-light leading-8 text-neutral-500 sm:text-lg">{copy.summary}</p>
+          <div className="mt-14 max-w-none">
+            <div className="mb-7 flex flex-wrap items-center gap-x-4 gap-y-2 text-[10px] font-bold uppercase tracking-[4px] text-[#7e9882]">
+              <span>{copy.category}</span><span aria-hidden="true" className="text-neutral-300">/</span><span>{project.year}</span>
             </div>
-            <div className="lg:pb-2">
-              <ProjectImage image={project.coverImage} featured />
-            </div>
+            <h1 className="break-words font-serif text-[clamp(3rem,10vw,6rem)] font-medium leading-[0.9] tracking-[-0.06em] [overflow-wrap:anywhere] lg:text-[clamp(4rem,6.5vw,6rem)]">{copy.title}</h1>
+            <p className="mt-10 max-w-none text-base font-light leading-8 text-neutral-500 sm:text-lg">{copy.summary}</p>
+          </div>
+        </section>
+
+        <section className="mx-auto grid max-w-[1440px] gap-12 px-4 pb-20 sm:px-8 sm:pb-28 lg:grid-cols-[minmax(0,1.1fr)_minmax(280px,0.9fr)] lg:gap-16 lg:px-16 lg:pb-36 xl:gap-20">
+          <div className="min-w-0 border-t border-neutral-200/80 pt-10 sm:pt-12">
+            <aside>
+              <p className="mb-4 text-[9px] font-bold uppercase tracking-[3px] text-neutral-400">{labels.overview}</p>
+              <nav aria-label="Project sections" className="flex flex-wrap gap-x-5 gap-y-2">
+                {copy.sections.map((section) => <a key={section.id} href={`#${section.id}`} className="text-xs text-neutral-500 underline-offset-4 transition-colors hover:text-neutral-900 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-neutral-900">{section.title}</a>)}
+              </nav>
+            </aside>
+            <article className="mt-12 max-w-3xl text-base font-light leading-8 text-neutral-500 sm:text-lg">
+              {copy.sections.map((section) => <MarkdownSection key={section.id} section={section} />)}
+            </article>
+          </div>
+          <div className="min-w-0 self-start">
+            <ProjectImage image={project.coverImage} featured />
           </div>
         </section>
 
         <section className="border-y border-neutral-200/80 bg-white px-4 py-8 sm:px-8 lg:px-16">
-          <div className="mx-auto grid max-w-[1280px] gap-7 sm:grid-cols-2 lg:grid-cols-[1fr_1fr_1fr_1.6fr] lg:gap-12">
+          <div className="mx-auto grid max-w-[1280px] gap-7 sm:grid-cols-2 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)_minmax(0,1.5fr)_auto] lg:gap-8 xl:gap-12">
             <div><p className="mb-2 text-[9px] font-bold uppercase tracking-[3px] text-neutral-400">{labels.platform}</p><p className="text-sm text-neutral-800">{project.platform}</p></div>
             <div><p className="mb-2 text-[9px] font-bold uppercase tracking-[3px] text-neutral-400">{labels.status}</p><p className="text-sm text-neutral-800">{statusLabel(project.status)}</p></div>
             <div className="sm:col-span-2 lg:col-span-1"><p className="mb-2 text-[9px] font-bold uppercase tracking-[3px] text-neutral-400">{labels.stack}</p><div className="flex flex-wrap gap-2">{project.technologies.map((technology) => <span key={technology} className="rounded-full border border-neutral-200 px-3 py-1 text-[9px] uppercase tracking-[1px] text-neutral-500">{technology}</span>)}</div></div>
-            <div className="flex flex-wrap items-end gap-x-6 gap-y-2 sm:col-span-2 lg:justify-end">
+            <div className="flex flex-wrap items-start gap-x-6 gap-y-2 sm:col-span-2 lg:col-span-1 lg:col-start-4 lg:row-start-1 lg:justify-self-end">
               {project.repositoryUrl && <a aria-label="View repository" href={project.repositoryUrl} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center border-b border-neutral-900 py-2 text-[10px] font-bold uppercase tracking-[2px] transition-opacity hover:opacity-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-neutral-900">{labels.repository} ↗</a>}
               {project.liveUrl && <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center border-b border-neutral-900 py-2 text-[10px] font-bold uppercase tracking-[2px] transition-opacity hover:opacity-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-neutral-900">{labels.live} ↗</a>}
               {project.status === "coming-soon" && <span className="inline-flex min-h-11 items-center text-[10px] font-bold uppercase tracking-[2px] text-neutral-400">{labels.comingSoon}</span>}
@@ -102,19 +115,7 @@ export function ProjectPage() {
           </div>
         </section>
 
-        <section className="mx-auto grid max-w-[1280px] gap-14 px-4 py-20 sm:px-8 sm:py-28 lg:grid-cols-[180px_minmax(0,720px)] lg:gap-20 lg:px-16 lg:py-36">
-          <aside className="lg:sticky lg:top-28 lg:h-fit">
-            <p className="mb-4 text-[9px] font-bold uppercase tracking-[3px] text-neutral-400">{labels.overview}</p>
-            <nav aria-label="Project sections" className="flex flex-wrap gap-x-5 gap-y-2 lg:flex-col lg:gap-3">
-              {copy.sections.map((section) => <a key={section.id} href={`#${section.id}`} className="text-xs text-neutral-500 underline-offset-4 transition-colors hover:text-neutral-900 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-neutral-900">{section.title}</a>)}
-            </nav>
-          </aside>
-          <article className="max-w-3xl text-base font-light leading-8 text-neutral-500 sm:text-lg">
-            {copy.sections.map((section) => <MarkdownSection key={section.id} section={section} />)}
-          </article>
-        </section>
-
-        {project.gallery && project.gallery.length > 0 && <section className="border-t border-neutral-200/80 bg-white px-4 py-16 sm:px-8 sm:py-24 lg:px-16 lg:py-32"><div className="mx-auto max-w-[1280px]"><p className="mb-8 text-[9px] font-bold uppercase tracking-[4px] text-neutral-400">Interface frames</p><div className="grid gap-5 md:grid-cols-3">{project.gallery.map((image) => <ProjectImage key={image.src} image={image} />)}</div></div></section>}
+        {gallery && gallery.length > 0 && <section className="border-t border-neutral-200/80 bg-white px-4 py-16 sm:px-8 sm:py-24 lg:px-16 lg:py-32"><div className="mx-auto max-w-[1280px]"><p className="mb-8 text-[9px] font-bold uppercase tracking-[4px] text-neutral-400">Interface frames</p><div className="grid gap-5 md:grid-cols-3">{gallery.map((image) => <ProjectImage key={image.src} image={image} />)}</div></div></section>}
 
         {next && nextCopy && <section className="border-t border-neutral-200/80 bg-[#f3f1ed] px-4 py-20 sm:px-8 sm:py-28 lg:px-16 lg:py-36"><div className="mx-auto max-w-[1280px]"><div className="mb-8 flex items-center justify-between gap-5"><p className="text-[9px] font-bold uppercase tracking-[4px] text-neutral-400">{labels.nextLabel}</p>{previous && previousCopy && <Link to={`/projects/${previous.slug}`} className="text-[9px] font-bold uppercase tracking-[3px] text-neutral-400 transition-colors hover:text-neutral-900">← {labels.previous}: {previousCopy.title}</Link>}</div><Link aria-label={`${labels.next}: ${nextCopy.title}`} to={`/projects/${next.slug}`} className="group block focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-8 focus-visible:outline-neutral-900"><div className="grid items-end gap-8 md:grid-cols-[minmax(0,1fr)_minmax(260px,380px)]"><div><p className="mb-5 text-[10px] font-bold uppercase tracking-[4px] text-[#7e9882]">{nextCopy.category} / {next.year}</p><h2 className="font-serif text-[clamp(3rem,8vw,7rem)] font-medium leading-[0.9] tracking-[-0.06em] transition-transform duration-500 group-hover:translate-x-2">{nextCopy.title}</h2></div><img src={next.coverImage.src} alt={next.coverImage.alt} className="aspect-[4/3] w-full object-cover grayscale transition-all duration-700 group-hover:grayscale-0" width="800" height="600" loading="lazy" /></div></Link><Link to="/#works" className="mt-12 inline-flex min-h-11 items-center border-b border-neutral-900 py-2 text-[10px] font-bold uppercase tracking-[3px] transition-opacity hover:opacity-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-neutral-900">{labels.allWorks}</Link></div></section>}
       </main>

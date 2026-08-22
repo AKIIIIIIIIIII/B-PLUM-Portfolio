@@ -1,7 +1,13 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: Inter, "Noto Sans JP", sans-serif;
-  --font-serif: "Playfair Display", serif;
-  --font-narrative: "Playfair Display", serif;
+  --font-sans: Inter, "Noto Sans JP", "Noto Sans SC", sans-serif;
+  --font-serif: "Playfair Display", "Noto Serif JP", "Noto Serif SC", serif;
+  --font-narrative: "Playfair Display", "Noto Serif JP", "Noto Serif SC", serif;
+}
+
+html[data-locale="zh"] {
+  --font-sans: Inter, "Noto Sans SC", "Noto Sans JP", sans-serif;
+  --font-serif: "Playfair Display", "Noto Serif SC", "Noto Serif JP", serif;
+  --font-narrative: "Playfair Display", "Noto Serif SC", "Noto Serif JP", serif;
 }

@@ -3,21 +3,25 @@ import { MemoryRouter, Route, Routes } from "react-router-dom";
 import { describe, expect, it } from "vitest";
 import { NotFoundPage, ProjectPage } from "../pages/ProjectPage";
 import { HomePage } from "../pages/HomePage";
+import { LocaleProvider } from "../locale-context";
+import type { Locale } from "../i18n";
 
-function renderProject(path: string) {
+function renderProject(path: string, locale: Locale = "en") {
   return render(
     <MemoryRouter initialEntries={[path]}>
-      <Routes>
-        <Route path="/projects/:slug" element={<ProjectPage />} />
-        <Route path="*" element={<NotFoundPage />} />
-      </Routes>
+      <LocaleProvider locale={locale}>
+        <Routes>
+          <Route path="/:locale/projects/:slug" element={<ProjectPage />} />
+          <Route path="*" element={<NotFoundPage />} />
+        </Routes>
+      </LocaleProvider>
     </MemoryRouter>,
   );
 }
 
 describe("project routes", () => {
   it("renders the Easy Cat Minesweeper repository action", () => {
-    renderProject("/projects/easy-cat-minesweeper");
+    renderProject("/en/projects/easy-cat-minesweeper");
     const repositoryLink = screen.getByRole("link", { name: /view repository/i });
 
     expect(screen.getByRole("heading", { name: "Easy Cat Minesweeper" })).toBeInTheDocument();
@@ -29,7 +33,7 @@ describe("project routes", () => {
   });
 
   it("renders the Plum.B detail page", () => {
-    renderProject("/projects/plum-b");
+    renderProject("/en/projects/plum-b");
     expect(screen.getByRole("heading", { name: "Plum.B" })).toBeInTheDocument();
     expect(screen.getByRole("link", { name: /view repository/i })).toHaveAttribute("href", "https://github.com/AKIIIIIIIIIII/B-PLUM-ASK");
     expect(screen.getByText("Case study")).toBeInTheDocument();
@@ -42,27 +46,41 @@ describe("project routes", () => {
     expect(screen.getByText("Generated hexagram result")).toBeInTheDocument();
     expect(screen.getByText("Empty input state")).toBeInTheDocument();
     expect(screen.getByText("Ready-to-cast state")).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: /next project/i })).toHaveAttribute("href", "/projects/easy-cat-minesweeper");
+    expect(screen.getByRole("link", { name: /next project/i })).toHaveAttribute("href", "/en/projects/easy-cat-minesweeper");
     expect(screen.queryByRole("link", { name: /previous project/i })).not.toBeInTheDocument();
   });
 
   it("renders the not found page for the removed Eco Flow System route", () => {
-    renderProject("/projects/eco-flow-system");
+    renderProject("/en/projects/eco-flow-system");
     expect(screen.getByRole("heading", { name: "Quietly missing." })).toBeInTheDocument();
   });
 
   it("renders the not found page for an unknown project", () => {
-    renderProject("/projects/missing");
+    renderProject("/en/projects/missing");
     expect(screen.getByRole("heading", { name: "Quietly missing." })).toBeInTheDocument();
   });
 });
 
 describe("home sections", () => {
   it("exposes the three primary section titles at stable anchors", () => {
-    render(<MemoryRouter initialEntries={["/"]}><HomePage /></MemoryRouter>);
+    render(<MemoryRouter initialEntries={["/en"]}><LocaleProvider locale="en"><HomePage /></LocaleProvider></MemoryRouter>);
     expect(screen.getByRole("heading", { name: "A space for ideas." })).toHaveAttribute("id", "about");
     expect(screen.getByRole("heading", { name: "Selected projects." })).toHaveAttribute("id", "works");
     expect(screen.getByText("Contact", { selector: "p" })).toHaveAttribute("id", "contact");
     expect(screen.getByText("2", { selector: "span" })).toBeInTheDocument();
+  });
+
+  it.each([
+    ["ja" as const, "アイデアのための 余白。", "作品を見る"],
+    ["zh" as const, "一处容纳 想法的空间。", "查看项目"],
+  ])("renders localized %s home and project content", (locale, homeHeading, projectAction) => {
+    const home = render(<MemoryRouter initialEntries={[`/${locale}`]}><LocaleProvider locale={locale}><HomePage /></LocaleProvider></MemoryRouter>);
+    expect(screen.getByRole("heading", { name: homeHeading })).toBeInTheDocument();
+    expect(screen.getAllByRole("link", { name: projectAction }).length).toBeGreaterThan(0);
+    home.unmount();
+
+    renderProject(`/${locale}/projects/plum-b`, locale);
+    expect(screen.getByRole("heading", { name: locale === "ja" ? "背景と目標" : "背景与目标" })).toBeInTheDocument();
+    expect(screen.getByText(locale === "ja" ? "ケーススタディ" : "项目案例")).toBeInTheDocument();
   });
 });

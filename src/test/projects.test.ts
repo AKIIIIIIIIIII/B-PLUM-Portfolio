@@ -13,20 +13,23 @@ describe("project content", () => {
 
   it("uses the shared case study structure for every project", () => {
     for (const project of projects) {
-      expect(getProjectLocale(project).sections.map((section) => section.id)).toEqual(caseStudySectionIds);
-      expect(getProjectLocale(project).sections.map((section) => section.title)).toEqual([
+      expect(getProjectLocale(project, "en").sections.map((section) => section.id)).toEqual(caseStudySectionIds);
+      expect(getProjectLocale(project, "en").sections.map((section) => section.title)).toEqual([
         "Context & goal",
         "My contribution",
         "Experience & decisions",
         "Implementation",
         "Outcome & learnings",
       ]);
-      expect(getProjectLocale(project).sections.find((section) => section.id === "contribution")?.content).toMatch(/independently/i);
+      expect(getProjectLocale(project, "en").sections.find((section) => section.id === "contribution")?.content).toMatch(/independently/i);
+      expect(Object.keys(project.locales).sort()).toEqual(["en", "ja", "zh"]);
+      expect(getProjectLocale(project, "ja").sections.map((section) => section.id)).toEqual(caseStudySectionIds);
+      expect(getProjectLocale(project, "zh").sections.map((section) => section.id)).toEqual(caseStudySectionIds);
     }
   });
 
   it("resolves Plum.B with two supporting gallery frames", () => {
-    expect(getProject("plum-b")?.title).toBe("Plum.B");
+    expect(getProject("plum-b")?.locales.en.title).toBe("Plum.B");
     expect(getProject("plum-b")?.gallery).toHaveLength(2);
   });
 

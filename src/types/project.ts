@@ -1,3 +1,5 @@
+import type { Locale } from "../i18n";
+
 export type ProjectStatus = "published" | "coming-soon";
 
 export interface ProjectSection {
@@ -8,6 +10,9 @@ export interface ProjectSection {
 
 export interface ProjectImage {
   src: string;
+}
+
+export interface ProjectImageCopy {
   alt: string;
   caption?: string;
 }
@@ -17,12 +22,12 @@ export interface ProjectLocale {
   category: string;
   summary: string;
   sections: ProjectSection[];
+  coverImage: ProjectImageCopy;
+  gallery?: ProjectImageCopy[];
 }
 
 export interface Project {
   slug: string;
-  /** Compatibility alias for older consumers; locale data is canonical. */
-  title: string;
   year: string;
   status: ProjectStatus;
   technologies: string[];
@@ -32,8 +37,5 @@ export interface Project {
   repositoryUrl?: string;
   liveUrl?: string;
   featured: boolean;
-  locales: {
-    en: ProjectLocale;
-    [locale: string]: ProjectLocale;
-  };
+  locales: Record<Locale, ProjectLocale>;
 }

@@ -5,8 +5,13 @@ import { Header } from "../components/Header";
 import { Hero } from "../components/Hero";
 import { ProjectGrid } from "../components/ProjectGrid";
 import { Reveal } from "../components/Reveal";
+import { useLocale } from "../use-locale";
+import { usePageMetadata } from "../seo";
 
 export function HomePage() {
+  const { locale, copy } = useLocale();
+  usePageMetadata({ locale, title: copy.seo.homeTitle, description: copy.seo.homeDescription, path: `/${locale}` });
+
   useLayoutEffect(() => {
     const hash = window.location.hash;
     if (!hash) {
@@ -28,7 +33,7 @@ export function HomePage() {
         <section className="bg-white px-4 py-20 text-center sm:px-6 sm:py-28 md:px-12 lg:px-24 lg:py-40">
           <Reveal className="mx-auto max-w-4xl">
             <blockquote className="mb-10 font-serif text-[clamp(1.35rem,3.5vw+0.5rem,3rem)] font-medium italic leading-snug sm:mb-14">
-              「完璧とは、これ以上加えるものがない状態ではなく、これ以上削るものがない状態のことである。」
+              “{copy.quote}”
             </blockquote>
             <cite className="text-[9px] font-bold uppercase not-italic tracking-[4px] sm:text-[10px]">Antoine de Saint-Exupéry</cite>
           </Reveal>

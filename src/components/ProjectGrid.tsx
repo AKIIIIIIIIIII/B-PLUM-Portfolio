@@ -9,8 +9,8 @@ export function ProjectGrid() {
   const featured = projects.filter((project) => project.featured);
 
   return (
-    <section className="bg-white px-4 py-20 sm:px-6 sm:py-28 md:px-12 lg:px-24 lg:py-40">
-      <div className="mx-auto flex w-full max-w-[1280px] flex-col gap-12 sm:gap-16 lg:gap-24">
+    <section className="bg-white py-20 sm:py-28 lg:py-40">
+      <div className="site-container flex flex-col gap-12 sm:gap-16 lg:gap-24">
         <SectionHeading id="works" eyebrow={copy.works.eyebrow} title={copy.works.title} accent={copy.works.accent} />
 
         <div className="flex flex-col gap-8 lg:gap-8">

@@ -30,13 +30,15 @@ export function HomePage() {
         <Hero />
         <About />
         <ProjectGrid />
-        <section className="bg-white px-4 py-20 text-center sm:px-6 sm:py-28 md:px-12 lg:px-24 lg:py-40">
+        <section className="bg-white py-20 text-center sm:py-28 lg:py-40">
+          <div className="site-container">
           <Reveal className="mx-auto max-w-4xl">
             <blockquote className="mb-10 font-serif text-[clamp(1.35rem,3.5vw+0.5rem,3rem)] font-medium italic leading-snug sm:mb-14">
               “{copy.quote}”
             </blockquote>
             <cite className="text-[9px] font-bold uppercase not-italic tracking-[4px] sm:text-[10px]">Antoine de Saint-Exupéry</cite>
           </Reveal>
+          </div>
         </section>
       </main>
       <Footer />

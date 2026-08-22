@@ -50,6 +50,18 @@ export function Header() {
     target.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
+  const handleHomeClick = (event: MouseEvent<HTMLAnchorElement>) => {
+    setOpen(false);
+    if (location.pathname !== homePath) return;
+
+    event.preventDefault();
+    window.history.replaceState(null, "", homePath);
+    window.scrollTo({
+      top: 0,
+      behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
+    });
+  };
+
   useEffect(() => {
     const closeOnEscape = (event: KeyboardEvent) => {
       if (event.key === "Escape") setOpen(false);
@@ -61,7 +73,7 @@ export function Header() {
   return (
     <>
       <header className="fixed inset-x-0 top-0 z-50 flex h-20 items-center justify-between border-b border-neutral-100 bg-white/75 px-4 backdrop-blur-xl transition-shadow sm:px-8 lg:px-16">
-        <Link to={homePath} className="flex min-w-0 shrink-0 items-center gap-3" aria-label={copy.nav.home}>
+        <Link to={homePath} className="flex min-w-0 shrink-0 items-center gap-3" aria-label={copy.nav.home} onClick={handleHomeClick}>
           <span className="flex h-8 w-8 items-center justify-center rounded-md bg-neutral-900 font-serif text-[10px] italic text-white">bp</span>
           <span className="truncate font-serif text-lg italic tracking-[2px] sm:text-xl">b-plum</span>
         </Link>

@@ -4,11 +4,11 @@ import { useLocale } from "../use-locale";
 export function Footer() {
   const { copy } = useLocale();
   return (
-    <footer className="overflow-hidden bg-white px-4 pb-16 pt-24 sm:px-6 sm:pb-20 sm:pt-32 md:px-12 lg:px-24 lg:pt-52">
-      <div className="mx-auto mb-16 max-w-[1280px] sm:mb-24 lg:mb-32">
+    <footer className="overflow-hidden bg-white pb-16 pt-24 sm:pb-20 sm:pt-32 lg:pt-52">
+      <div className="site-container mb-16 sm:mb-24 lg:mb-32">
         <SectionHeading id="contact" eyebrow={copy.contact.eyebrow} />
       </div>
-      <div className="mx-auto mb-16 grid max-w-[1280px] gap-12 sm:mb-24 lg:mb-40 lg:grid-cols-2 lg:gap-24">
+      <div className="site-container mb-16 grid gap-12 sm:mb-24 lg:mb-40 lg:grid-cols-2 lg:gap-24">
         <div>
           <h2 className="mb-10 font-serif text-[clamp(2.5rem,7vw,6rem)] leading-[0.9] tracking-[-0.05em] sm:mb-12 lg:mb-16"><span className="text-neutral-900">{copy.contact.heading}</span><br /><span className="italic text-neutral-300">{copy.contact.accent}</span></h2>
           <a href="mailto:sylvia.aki.lxc@gmail.com" className="inline-block break-all border-b border-neutral-900/10 pb-2 font-serif text-xl tracking-tight transition-opacity hover:opacity-60 sm:text-2xl md:text-3xl lg:text-4xl">sylvia.aki.lxc@gmail.com</a>
@@ -19,8 +19,8 @@ export function Footer() {
           </a>
         </div>
       </div>
-      <div className="mx-auto mb-10 h-px max-w-[1280px] bg-neutral-100 sm:mb-12" />
-      <div className="mx-auto flex max-w-[1280px] flex-col items-center justify-between gap-6 text-center text-[8px] font-medium uppercase tracking-[3px] text-neutral-400 sm:flex-row sm:text-left sm:text-[9px]">
+      <div className="site-container mb-10 h-px bg-neutral-100 sm:mb-12" />
+      <div className="site-container flex flex-col items-center justify-between gap-6 text-center text-[8px] font-medium uppercase tracking-[3px] text-neutral-400 sm:flex-row sm:text-left sm:text-[9px]">
         <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-4"><span>© 2026 B-PLUM | {copy.contact.portfolio}</span><span className="hidden opacity-30 sm:inline">/</span><span>{copy.contact.crafted}</span></div>
         <a href="https://github.com/AKIIIIIIIIIII" target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-neutral-900">GitHub</a>
       </div>

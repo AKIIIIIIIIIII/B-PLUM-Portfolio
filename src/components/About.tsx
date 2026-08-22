@@ -5,8 +5,8 @@ import { useLocale } from "../use-locale";
 export function About() {
   const { copy } = useLocale();
   return (
-    <section className="bg-white px-4 py-20 sm:px-6 sm:py-28 md:px-12 lg:px-24 lg:py-40">
-      <div className="mx-auto flex max-w-[1280px] flex-col gap-12 sm:gap-16 lg:gap-20">
+    <section className="bg-white py-20 sm:py-28 lg:py-40">
+      <div className="site-container flex flex-col gap-12 sm:gap-16 lg:gap-20">
         <SectionHeading id="about" eyebrow={copy.about.eyebrow} title={copy.about.title} accent={copy.about.accent} />
         <div className="grid items-start gap-12 lg:grid-cols-2 lg:gap-24">
         <Reveal className="overflow-hidden rounded-md bg-[#fafafa] shadow-[0_25px_50px_-12px_rgba(0,0,0,0.2)]">

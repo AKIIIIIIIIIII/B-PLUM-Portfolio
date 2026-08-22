@@ -5,9 +5,9 @@ import { Reveal } from "./Reveal";
 export function Hero() {
   const { locale, copy } = useLocale();
   return (
-    <section className="relative overflow-hidden bg-[#fdfcfb] px-4 pb-16 pt-28 sm:px-6 sm:pb-20 sm:pt-32 lg:min-h-[800px] lg:px-[clamp(1.5rem,calc((100vw-1280px)/2),5.9375rem)] lg:pb-20 lg:pt-36">
+    <section className="relative overflow-hidden bg-[#fdfcfb] pb-16 pt-28 sm:pb-20 sm:pt-32 lg:min-h-[800px] lg:pb-20 lg:pt-36">
       <div className="pointer-events-none absolute left-1/2 top-36 h-[min(90vw,420px)] w-[min(90vw,420px)] -translate-x-1/2 rounded-full bg-[#e8eae3]/60 blur-[120px] motion-safe:animate-pulse lg:left-auto lg:right-20 lg:top-48 lg:h-[560px] lg:w-[560px]" aria-hidden="true" />
-      <div className="relative z-10 mx-auto grid w-full max-w-[1280px] gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(280px,477px)] lg:items-start lg:gap-x-[clamp(2rem,5vw,6.25rem)]">
+      <div className="site-container relative z-10 grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(280px,477px)] lg:items-start lg:gap-x-[clamp(2rem,5vw,6.25rem)]">
         <Reveal className="min-w-0 lg:max-w-[707px]">
           <div className="mb-12 sm:mb-20 lg:mb-24">
             <h1 className="font-serif text-[clamp(3.5rem,10vw+0.5rem,8.5rem)] leading-[0.92] tracking-[-0.08em]">

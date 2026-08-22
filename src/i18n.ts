@@ -92,7 +92,7 @@ export interface SiteCopy {
 export const siteCopy: Record<Locale, SiteCopy> = {
   en: {
     nav: { about: "About", works: "Works", contact: "Contact", primary: "Primary navigation", language: "Language", openMenu: "Open menu", closeMenu: "Close menu", home: "b-plum home" },
-    hero: { body: "b-plum is a collection of projects shaped by my everyday reflections and programming practice. I explore new digital landscapes where stillness and functionality resonate.", archive: "Enter Archive", imageAlt: "Abstract architectural light and shadow" },
+    hero: { body: "b-plum is a collection of personal projects that begin with everyday thoughts and take shape through code.", archive: "Enter Archive", imageAlt: "Abstract architectural light and shadow" },
     about: { eyebrow: "About Me", title: "A space", accent: "for ideas.", statementStart: "Code with", statementAccent: "warmth", statementEnd: ".", body: "b-plum is a space for my digital experiments and creative work. I do not see web applications as mere collections of tools, but as spaces where a maker's thinking meets the people who use them.", projects: "Personal Projects", experienceValue: "1 year", experience: "Dev Experience", imageAlt: "Portrait of the creator of b-plum" },
     works: { eyebrow: "Personal Projects", title: "Selected", accent: "projects.", github: "Check GitHub", viewProject: "View Project", comingSoon: "Coming Soon" },
     quote: "Perfection is achieved, not when there is nothing more to add, but when there is nothing left to take away.",
@@ -103,7 +103,7 @@ export const siteCopy: Record<Locale, SiteCopy> = {
   },
   ja: {
     nav: { about: "私について", works: "作品", contact: "連絡先", primary: "メインナビゲーション", language: "言語", openMenu: "メニューを開く", closeMenu: "メニューを閉じる", home: "b-plum ホーム" },
-    hero: { body: "b-plumは、日々の思索とプログラミングをかたちにしたプロジェクト集です。静けさと機能性が響き合う、新しいデジタルの風景を探求しています。", archive: "作品を見る", imageAlt: "建築空間に差し込む抽象的な光と影" },
+    hero: { body: "b-plumは、日々の気づきから始まり、コードを通してかたちになった個人プロジェクトを集めた場所です。", archive: "作品を見る", imageAlt: "建築空間に差し込む抽象的な光と影" },
     about: { eyebrow: "私について", title: "アイデアのための", accent: "余白。", statementStart: "コードで、", statementAccent: "体温", statementEnd: "を届ける。", body: "b-plumは、私のデジタルな実験と創造の場です。ウェブアプリは単なるツールの集まりではなく、作り手の思索が使う人と交差する「空間」だと考えています。", projects: "個人プロジェクト", experienceValue: "1年", experience: "開発経験", imageAlt: "b-plum制作者のポートレート" },
     works: { eyebrow: "個人プロジェクト", title: "選び抜いた", accent: "作品。", github: "GitHubを見る", viewProject: "作品を見る", comingSoon: "近日公開" },
     quote: "完璧とは、これ以上加えるものがない状態ではなく、これ以上削るものがない状態のことである。",
@@ -114,7 +114,7 @@ export const siteCopy: Record<Locale, SiteCopy> = {
   },
   zh: {
     nav: { about: "关于", works: "作品", contact: "联系", primary: "主导航", language: "语言", openMenu: "打开菜单", closeMenu: "关闭菜单", home: "b-plum 首页" },
-    hero: { body: "b-plum 是一组由日常思考与编程实践凝结而成的个人项目。我在这里探索安静与功能彼此共鸣的数字风景。", archive: "进入作品集", imageAlt: "建筑空间中抽象的光影" },
+    hero: { body: "b-plum 是一组从日常想法出发、通过代码慢慢成形的个人项目。", archive: "进入作品集", imageAlt: "建筑空间中抽象的光影" },
     about: { eyebrow: "关于我", title: "一处容纳", accent: "想法的空间。", statementStart: "用代码传递", statementAccent: "温度", statementEnd: "。", body: "b-plum 是我进行数字实验与创作的空间。对我而言，网页应用并不只是工具的集合，而是创作者的思考与使用者相遇的“场所”。", projects: "个人项目", experienceValue: "1 年", experience: "开发经验", imageAlt: "b-plum 创作者肖像" },
     works: { eyebrow: "个人项目", title: "精选", accent: "作品。", github: "查看 GitHub", viewProject: "查看项目", comingSoon: "即将发布" },
     quote: "完美，不是无可复加，而是无可删减。",

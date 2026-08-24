@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { useLocale } from "../use-locale";
 import { Reveal } from "./Reveal";
 
-export function Hero() {
+export function Hero({ onSupport }: { onSupport: () => void }) {
   const { locale, copy } = useLocale();
   return (
     <section className="relative overflow-hidden bg-[#fdfcfb] pb-16 pt-28 sm:pb-20 sm:pt-32 xl:min-h-[800px] lg:pb-20 lg:pt-36">
@@ -19,10 +19,13 @@ export function Hero() {
             <p className="text-base font-light leading-relaxed text-neutral-500 sm:text-lg sm:leading-9">
               {copy.hero.body}
             </p>
-            <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:gap-10">
+            <div className="flex flex-nowrap items-center gap-4 sm:gap-10">
               <Link to={`/${locale}#works`} className="inline-flex min-h-11 items-center self-start border-b border-neutral-900 py-3 text-[11px] font-bold uppercase tracking-[5px] text-neutral-900 transition-opacity hover:opacity-60 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-neutral-900">
                 {copy.hero.archive}
               </Link>
+              <button type="button" onClick={onSupport} className="inline-flex min-h-11 items-center self-start border-b border-neutral-300 py-3 text-[10px] font-bold uppercase tracking-[3px] text-neutral-500 transition-colors hover:border-neutral-900 hover:text-neutral-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-neutral-900">
+                {copy.contact.supportLink} <span aria-hidden="true" className="ml-2">↗</span>
+              </button>
             </div>
           </div>
         </Reveal>

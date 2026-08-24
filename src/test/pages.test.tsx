@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
 import { describe, expect, it } from "vitest";
 import { NotFoundPage, ProjectPage } from "../pages/ProjectPage";
@@ -30,6 +30,8 @@ describe("project routes", () => {
     expect(repositoryLink).toHaveAttribute("target", "_blank");
     expect(repositoryLink).toHaveAttribute("rel", "noopener noreferrer");
     expect(screen.getByAltText("Plum.B hexagram result screen")).toHaveClass("aspect-[3/4]", "object-[50%_10%]");
+    expect(screen.queryByRole("button", { name: "Open Buy Me a Coffee" })).not.toBeInTheDocument();
+    expect(screen.queryByAltText("QR code to support b-plum on Buy Me a Coffee")).not.toBeInTheDocument();
   });
 
   it("renders the Plum.B detail page", () => {
@@ -70,6 +72,27 @@ describe("home sections", () => {
     expect(screen.getByText("2", { selector: "span" })).toBeInTheDocument();
   });
 
+  it("opens one support panel from the native homepage actions and closes it with Escape", () => {
+    render(<MemoryRouter initialEntries={["/en"]}><LocaleProvider locale="en"><HomePage /></LocaleProvider></MemoryRouter>);
+
+    expect(screen.getAllByRole("button", { name: "Support my work" })).toHaveLength(2);
+    const qrLink = screen.getByRole("link", { name: "QR code to support b-plum on Buy Me a Coffee" });
+    expect(qrLink).toHaveAttribute("href", "https://www.buymeacoffee.com/plum.b");
+    expect(qrLink).toHaveAttribute("rel", "noopener noreferrer");
+    expect(screen.getByAltText("QR code to support b-plum on Buy Me a Coffee")).toHaveAttribute("src", "/images/qr-code.png");
+    const heroSupport = screen.getAllByRole("button", { name: "Support my work" })[0];
+    heroSupport.focus();
+    fireEvent.click(heroSupport);
+
+    expect(screen.getByRole("dialog", { name: "Support the work" })).toBeInTheDocument();
+    expect(screen.getByTitle("Support b-plum on Buy Me a Coffee")).toHaveAttribute("src", expect.stringContaining("/widget/page/plum.b"));
+    expect(screen.getByRole("link", { name: /open in a new tab/i })).toHaveAttribute("rel", "noopener noreferrer");
+
+    fireEvent.keyDown(document, { key: "Escape" });
+    expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
+    expect(heroSupport).toHaveFocus();
+  });
+
   it.each([
     ["ja" as const, "アイデアのための 余白。", "作品を見る"],
     ["zh" as const, "一处容纳 想法的空间。", "查看项目"],
@@ -77,6 +100,8 @@ describe("home sections", () => {
     const home = render(<MemoryRouter initialEntries={[`/${locale}`]}><LocaleProvider locale={locale}><HomePage /></LocaleProvider></MemoryRouter>);
     expect(screen.getByRole("heading", { name: homeHeading })).toBeInTheDocument();
     expect(screen.getAllByRole("link", { name: projectAction }).length).toBeGreaterThan(0);
+    expect(screen.getAllByRole("button", { name: locale === "ja" ? "創作を応援する" : "支持我的创作" })).toHaveLength(2);
+    expect(screen.getByAltText(locale === "ja" ? "Buy Me a Coffeeでb-plumを応援するQRコード" : "在 Buy Me a Coffee 上支持 b-plum 的二维码")).toBeInTheDocument();
     home.unmount();
 
     renderProject(`/${locale}/projects/plum-b`, locale);

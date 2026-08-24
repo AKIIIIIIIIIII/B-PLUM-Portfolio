@@ -66,7 +66,7 @@ export interface SiteCopy {
   };
   works: { eyebrow: string; title: string; accent: string; github: string; viewProject: string; comingSoon: string };
   quote: string;
-  contact: { eyebrow: string; heading: string; accent: string; crafted: string; portfolio: string };
+  contact: { eyebrow: string; heading: string; accent: string; crafted: string; portfolio: string; supportTitle: string; supportLink: string; supportClose: string; supportExternal: string; supportFrameTitle: string; qrAlt: string };
   project: {
     back: string;
     caseStudy: string;
@@ -96,7 +96,7 @@ export const siteCopy: Record<Locale, SiteCopy> = {
     about: { eyebrow: "About Me", title: "A space", accent: "for ideas.", statementStart: "Code with", statementAccent: "warmth", statementEnd: ".", body: "b-plum is a space for my digital experiments and creative work. I do not see web applications as mere collections of tools, but as spaces where a maker's thinking meets the people who use them.", projects: "Personal Projects", experienceValue: "1 year", experience: "Dev Experience", imageAlt: "Portrait of the creator of b-plum" },
     works: { eyebrow: "Personal Projects", title: "Selected", accent: "projects.", github: "Check GitHub", viewProject: "View Project", comingSoon: "Coming Soon" },
     quote: "Perfection is achieved, not when there is nothing more to add, but when there is nothing left to take away.",
-    contact: { eyebrow: "Contact", heading: "Keep", accent: "In Touch.", crafted: "Crafting with passion", portfolio: "Personal Portfolio" },
+    contact: { eyebrow: "Contact", heading: "Keep", accent: "In Touch.", crafted: "Crafting with passion", portfolio: "Personal Portfolio", supportTitle: "Support the work", supportLink: "Support my work", supportClose: "Close support panel", supportExternal: "Open in a new tab", supportFrameTitle: "Support b-plum on Buy Me a Coffee", qrAlt: "QR code to support b-plum on Buy Me a Coffee" },
     project: { back: "Back to projects", caseStudy: "Case study", sectionsNav: "Project sections", platform: "Platform", stack: "Technology", status: "Status", published: "Published", inProgress: "In progress", comingSoon: "Coming soon", repository: "View repository", live: "Open project", previous: "Previous project", next: "Next project", nextLabel: "Next project", allWorks: "View all projects", interfaceFrames: "Interface frames" },
     notFound: { label: "404 / Not found", title: "Quietly missing.", body: "This page could not be found.", home: "Return home" },
     seo: { homeTitle: "b-plum — Silent Narrative.", homeDescription: "A portfolio of personal projects where thoughtful programming, quiet visual design, and practical digital experiences meet.", notFoundTitle: "Page not found — b-plum" },
@@ -107,7 +107,7 @@ export const siteCopy: Record<Locale, SiteCopy> = {
     about: { eyebrow: "私について", title: "アイデアのための", accent: "余白。", statementStart: "コードで、", statementAccent: "体温", statementEnd: "を届ける。", body: "b-plumは、私のデジタルな実験と創造の場です。ウェブアプリは単なるツールの集まりではなく、作り手の思索が使う人と交差する「空間」だと考えています。", projects: "個人プロジェクト", experienceValue: "1年", experience: "開発経験", imageAlt: "b-plum制作者のポートレート" },
     works: { eyebrow: "個人プロジェクト", title: "選び抜いた", accent: "作品。", github: "GitHubを見る", viewProject: "作品を見る", comingSoon: "近日公開" },
     quote: "完璧とは、これ以上加えるものがない状態ではなく、これ以上削るものがない状態のことである。",
-    contact: { eyebrow: "連絡先", heading: "つながりを、", accent: "これからも。", crafted: "情熱を込めて制作", portfolio: "個人ポートフォリオ" },
+    contact: { eyebrow: "連絡先", heading: "つながりを、", accent: "これからも。", crafted: "情熱を込めて制作", portfolio: "個人ポートフォリオ", supportTitle: "創作を応援する", supportLink: "創作を応援する", supportClose: "応援パネルを閉じる", supportExternal: "新しいタブで開く", supportFrameTitle: "Buy Me a Coffeeでb-plumを応援する", qrAlt: "Buy Me a Coffeeでb-plumを応援するQRコード" },
     project: { back: "作品一覧へ戻る", caseStudy: "ケーススタディ", sectionsNav: "プロジェクトの各章", platform: "プラットフォーム", stack: "使用技術", status: "ステータス", published: "公開中", inProgress: "制作中", comingSoon: "近日公開", repository: "リポジトリを見る", live: "プロジェクトを開く", previous: "前の作品", next: "次の作品", nextLabel: "次の作品", allWorks: "すべての作品を見る", interfaceFrames: "インターフェース画面" },
     notFound: { label: "404 / 見つかりません", title: "静かに、見失いました。", body: "お探しのページは見つかりませんでした。", home: "ホームへ戻る" },
     seo: { homeTitle: "b-plum — Silent Narrative.", homeDescription: "思索を重ねたプログラミングと静かなビジュアルデザインが出会う、個人プロジェクトのポートフォリオ。", notFoundTitle: "ページが見つかりません — b-plum" },
@@ -118,7 +118,7 @@ export const siteCopy: Record<Locale, SiteCopy> = {
     about: { eyebrow: "关于我", title: "一处容纳", accent: "想法的空间。", statementStart: "用代码传递", statementAccent: "温度", statementEnd: "。", body: "b-plum 是我进行数字实验与创作的空间。对我而言，网页应用并不只是工具的集合，而是创作者的思考与使用者相遇的“场所”。", projects: "个人项目", experienceValue: "1 年", experience: "开发经验", imageAlt: "b-plum 创作者肖像" },
     works: { eyebrow: "个人项目", title: "精选", accent: "作品。", github: "查看 GitHub", viewProject: "查看项目", comingSoon: "即将发布" },
     quote: "完美，不是无可复加，而是无可删减。",
-    contact: { eyebrow: "联系", heading: "保持", accent: "联系。", crafted: "以热爱持续创作", portfolio: "个人作品集" },
+    contact: { eyebrow: "联系", heading: "保持", accent: "联系。", crafted: "以热爱持续创作", portfolio: "个人作品集", supportTitle: "支持这份创作", supportLink: "支持我的创作", supportClose: "关闭支持面板", supportExternal: "在新标签页打开", supportFrameTitle: "在 Buy Me a Coffee 上支持 b-plum", qrAlt: "在 Buy Me a Coffee 上支持 b-plum 的二维码" },
     project: { back: "返回作品列表", caseStudy: "项目案例", sectionsNav: "项目章节", platform: "平台", stack: "技术栈", status: "状态", published: "已发布", inProgress: "进行中", comingSoon: "即将发布", repository: "查看代码仓库", live: "打开项目", previous: "上一个项目", next: "下一个项目", nextLabel: "下一个项目", allWorks: "查看全部项目", interfaceFrames: "界面展示" },
     notFound: { label: "404 / 页面不存在", title: "这里安静地缺了一页。", body: "没有找到你要访问的页面。", home: "返回首页" },
     seo: { homeTitle: "b-plum — Silent Narrative.", homeDescription: "一个汇集个人项目的作品集，让审慎的编程、安静的视觉设计与实用的数字体验在此相遇。", notFoundTitle: "页面不存在 — b-plum" },

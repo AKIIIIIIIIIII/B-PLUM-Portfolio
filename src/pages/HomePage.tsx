@@ -1,4 +1,4 @@
-import { useLayoutEffect } from "react";
+import { useCallback, useLayoutEffect, useState } from "react";
 import { About } from "../components/About";
 import { Footer } from "../components/Footer";
 import { Header } from "../components/Header";
@@ -7,9 +7,13 @@ import { ProjectGrid } from "../components/ProjectGrid";
 import { Reveal } from "../components/Reveal";
 import { useLocale } from "../use-locale";
 import { usePageMetadata } from "../seo";
+import { SupportPanel } from "../components/BuyMeACoffee";
 
 export function HomePage() {
   const { locale, copy } = useLocale();
+  const [supportOpen, setSupportOpen] = useState(false);
+  const openSupport = useCallback(() => setSupportOpen(true), []);
+  const closeSupport = useCallback(() => setSupportOpen(false), []);
   usePageMetadata({ locale, title: copy.seo.homeTitle, description: copy.seo.homeDescription, path: `/${locale}` });
 
   useLayoutEffect(() => {
@@ -27,7 +31,7 @@ export function HomePage() {
     <div className="min-h-screen scroll-smooth overflow-x-hidden bg-white font-sans text-neutral-900 antialiased">
       <Header />
       <main>
-        <Hero />
+        <Hero onSupport={openSupport} />
         <About />
         <ProjectGrid />
         <section className="bg-white py-20 text-center sm:py-28 lg:py-40">
@@ -41,7 +45,8 @@ export function HomePage() {
           </div>
         </section>
       </main>
-      <Footer />
+      <Footer onSupport={openSupport} />
+      <SupportPanel open={supportOpen} title={copy.contact.supportTitle} closeLabel={copy.contact.supportClose} externalLabel={copy.contact.supportExternal} frameTitle={copy.contact.supportFrameTitle} onClose={closeSupport} />
     </div>
   );
 }

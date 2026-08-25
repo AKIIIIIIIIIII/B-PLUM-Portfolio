@@ -1,4 +1,4 @@
-# b-plum Portfolio
+# B-PLUM-Portfolio
 
 个人静态作品集，使用 React、TypeScript、Vite 和 Tailwind CSS 构建。
 

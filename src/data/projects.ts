@@ -13,12 +13,12 @@ export const projects: Project[] = [
     featured: true,
     locales: {
       en: {
-        title: "Easy Cat Minesweeper",
+        title: "B-PLUM-EasyCatMinesweeper",
         category: "Mini Game",
         summary: "A Java Swing desktop game that layers a small cat-themed visual experience onto the familiar rhythm of Minesweeper.",
-        coverImage: { alt: "Easy Cat Minesweeper game interface with cat-themed visuals", caption: "Playable desktop interface" },
+        coverImage: { alt: "B-PLUM-EasyCatMinesweeper game interface with cat-themed visuals", caption: "Playable desktop interface" },
         sections: [
-          { id: "context", title: "Context & goal", content: "Easy Cat Minesweeper began as an independent desktop experiment: rebuild the familiar Minesweeper loop in Java Swing while making the experience feel more approachable through cat-themed imagery and gentle visual feedback. The goal was a compact, playable game that preserves the rules players already understand without inheriting the severity of a traditional system interface." },
+          { id: "context", title: "Context & goal", content: "B-PLUM-EasyCatMinesweeper began as an independent desktop experiment: rebuild the familiar Minesweeper loop in Java Swing while making the experience feel more approachable through cat-themed imagery and gentle visual feedback. The goal was a compact, playable game that preserves the rules players already understand without inheriting the severity of a traditional system interface." },
           { id: "contribution", title: "My contribution", content: "I independently shaped the concept, visual direction, interaction behavior, game rules, and Java Swing implementation. I also organized the source into focused units for the window, board layers, mine generation, number calculation, shared state, and interface settings." },
           { id: "decisions", title: "Experience & decisions", content: "The first click is always safe so a new round begins without an arbitrary loss. Left-click opens a tile, right-click places or removes a mark, and hover and pressed states make the board respond clearly to every action. A compact status panel keeps the remaining marks, elapsed time, and current game state visible without interrupting play." },
           { id: "implementation", title: "Implementation", content: "`Minesweeper_Win` creates the Swing window and handles mouse events, while `MapTop` and `MapBottom` separate the visible tile layer from the underlying minefield. `BottomCat` generates mines, `Num` calculates nearby mine counts, and `GameUtil` centralizes shared state, images, constants, and UI settings." },
@@ -26,12 +26,12 @@ export const projects: Project[] = [
         ],
       },
       ja: {
-        title: "Easy Cat Minesweeper",
+        title: "B-PLUM-EasyCatMinesweeper",
         category: "ミニゲーム",
         summary: "おなじみのマインスイーパーに、猫をモチーフにした小さな世界観を重ねたJava Swing製デスクトップゲーム。",
-        coverImage: { alt: "猫をモチーフにしたEasy Cat Minesweeperのゲーム画面", caption: "実際に遊べるデスクトップ画面" },
+        coverImage: { alt: "猫をモチーフにしたB-PLUM-EasyCatMinesweeperのゲーム画面", caption: "実際に遊べるデスクトップ画面" },
         sections: [
-          { id: "context", title: "背景と目標", content: "Easy Cat Minesweeperは、慣れ親しんだマインスイーパーの遊びをJava Swingで組み直し、猫のビジュアルと穏やかなフィードバックによって親しみやすい体験にできないか、という個人実験から始まりました。既知のルールはそのままに、従来のシステム画面が持つ硬さを取り除いた、コンパクトで遊べるゲームを目指しました。" },
+          { id: "context", title: "背景と目標", content: "B-PLUM-EasyCatMinesweeperは、慣れ親しんだマインスイーパーの遊びをJava Swingで組み直し、猫のビジュアルと穏やかなフィードバックによって親しみやすい体験にできないか、という個人実験から始まりました。既知のルールはそのままに、従来のシステム画面が持つ硬さを取り除いた、コンパクトで遊べるゲームを目指しました。" },
           { id: "contribution", title: "担当したこと", content: "コンセプト、ビジュアルの方向性、操作感、ゲームルール、Java Swingでの実装まで、すべてを個人で設計・開発しました。ソースコードは、ウィンドウ、盤面レイヤー、地雷生成、数字計算、共有状態、画面設定という役割ごとに整理しています。" },
           { id: "decisions", title: "体験設計と判断", content: "最初の一手で不意に負けないよう、初回クリックは必ず安全にしました。左クリックでマスを開き、右クリックで印を付け外しでき、ホバーや押下状態によって操作への反応も明確にしています。残りの印、経過時間、ゲーム状態は小さなステータス領域にまとめ、プレイを妨げず確認できるようにしました。" },
           { id: "implementation", title: "実装", content: "`Minesweeper_Win`がSwingウィンドウとマウスイベントを担い、`MapTop`と`MapBottom`が見えるマスの層と内部の地雷原を分離します。`BottomCat`が地雷を生成し、`Num`が周囲の地雷数を計算、`GameUtil`が共有状態、画像、定数、UI設定を一元管理します。" },
@@ -39,12 +39,12 @@ export const projects: Project[] = [
         ],
       },
       zh: {
-        title: "Easy Cat Minesweeper",
+        title: "B-PLUM-EasyCatMinesweeper",
         category: "迷你游戏",
         summary: "一款使用 Java Swing 制作的桌面游戏，在熟悉的扫雷节奏中加入轻巧的猫咪主题视觉体验。",
-        coverImage: { alt: "带有猫咪主题视觉的 Easy Cat Minesweeper 游戏界面", caption: "可实际游玩的桌面界面" },
+        coverImage: { alt: "带有猫咪主题视觉的 B-PLUM-EasyCatMinesweeper 游戏界面", caption: "可实际游玩的桌面界面" },
         sections: [
-          { id: "context", title: "背景与目标", content: "Easy Cat Minesweeper 起源于一次独立的桌面开发实验：用 Java Swing 重做熟悉的扫雷循环，并借助猫咪主题图像和柔和的视觉反馈，让体验更容易亲近。目标是做出一款小巧而完整的游戏，在保留玩家熟悉规则的同时，摆脱传统系统界面的生硬感。" },
+          { id: "context", title: "背景与目标", content: "B-PLUM-EasyCatMinesweeper 起源于一次独立的桌面开发实验：用 Java Swing 重做熟悉的扫雷循环，并借助猫咪主题图像和柔和的视觉反馈，让体验更容易亲近。目标是做出一款小巧而完整的游戏，在保留玩家熟悉规则的同时，摆脱传统系统界面的生硬感。" },
           { id: "contribution", title: "我的工作", content: "我独立完成了产品概念、视觉方向、交互行为、游戏规则与 Java Swing 实现，并按照窗口、棋盘图层、地雷生成、数字计算、共享状态和界面设置等职责组织代码。" },
           { id: "decisions", title: "体验与设计判断", content: "第一次点击始终安全，让新一局不会因偶然而立刻结束。左键翻开方格，右键添加或移除标记，悬停和按下状态会清楚回应每次操作。紧凑的状态区持续显示剩余标记、经过时间和当前游戏状态，同时不打断游玩。" },
           { id: "implementation", title: "实现方式", content: "`Minesweeper_Win` 创建 Swing 窗口并处理鼠标事件，`MapTop` 与 `MapBottom` 将可见方格层和底层雷区分离。`BottomCat` 负责生成地雷，`Num` 计算周围地雷数量，`GameUtil` 则集中管理共享状态、图片、常量与界面设置。" },

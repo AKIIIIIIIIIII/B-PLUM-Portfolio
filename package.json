@@ -1,7 +1,7 @@
 {
   "name": "b-plum-portfolio",
   "version": "1.0.0",
-  "description": "b-plum personal portfolio — Silent Narrative.",
+  "description": "B-PLUM-Portfolio personal portfolio — Silent Narrative.",
   "private": true,
   "scripts": {
     "dev": "vite",

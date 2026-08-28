@@ -19,7 +19,7 @@ export function Footer({ onSupport }: { onSupport?: () => void }) {
       <div className="site-container mb-16 grid gap-12 sm:mb-24 lg:mb-40 lg:grid-cols-2 lg:gap-20">
         <div>
           <h2 className="mb-10 font-serif text-[clamp(2.5rem,7vw,6rem)] leading-[0.9] tracking-[-0.05em] sm:mb-12 lg:mb-16"><span className="text-neutral-900">{copy.contact.heading}</span><br /><span className="italic text-neutral-300">{copy.contact.accent}</span></h2>
-          <a href="mailto:sylvia.aki.lxc@gmail.com" className="inline-block break-all border-b border-neutral-900/10 pb-2 font-serif text-xl tracking-tight transition-opacity hover:opacity-60 sm:text-2xl md:text-3xl lg:text-4xl">sylvia.aki.lxc@gmail.com</a>
+          <a href="mailto:tabasco.plum.b@gmail.com" className="inline-block break-all border-b border-neutral-900/10 pb-2 font-serif text-xl tracking-tight transition-opacity hover:opacity-60 sm:text-2xl md:text-3xl lg:text-4xl">tabasco.plum.b@gmail.com</a>
         </div>
         <div className="flex items-end lg:justify-start">
           {onSupport ? <div className="flex items-end gap-5 lg:flex-col lg:items-start lg:gap-3">

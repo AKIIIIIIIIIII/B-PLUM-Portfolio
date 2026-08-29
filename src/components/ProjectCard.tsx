@@ -25,7 +25,7 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
         <div className="absolute inset-0 flex items-center justify-center bg-neutral-900/55 px-6 py-12 transition-colors duration-500 group-hover:bg-neutral-900/40 sm:px-12">
           <div className="flex max-w-[560px] flex-col items-center text-center transition-transform duration-700 group-hover:scale-105">
             <p className="text-[10px] uppercase tracking-[6px] text-white/65">{copy.category}</p>
-            <h3 className="mt-6 font-serif text-[clamp(1.75rem,6vw,4rem)] font-medium italic leading-none text-white">{copy.title}</h3>
+            <h3 className="mt-6 break-words font-serif text-[clamp(1.75rem,6vw,4rem)] font-medium italic leading-none text-white [overflow-wrap:anywhere]">{copy.title}</h3>
             <div className="mt-8 flex flex-wrap justify-center gap-3">
               {project.technologies.map((technology) => <span key={technology} className="inline-flex h-6 items-center rounded-full border border-white/25 px-4 text-[9px] uppercase tracking-[1px] text-white/85">{technology}</span>)}
             </div>

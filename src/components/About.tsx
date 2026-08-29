@@ -1,9 +1,11 @@
 import { Reveal } from "./Reveal";
 import { SectionHeading } from "./SectionHeading";
 import { useLocale } from "../use-locale";
+import { projects } from "../data/projects";
 
 export function About() {
   const { copy } = useLocale();
+  const projectCount = projects.filter((project) => project.featured).length;
   return (
     <section className="bg-white py-20 sm:py-28 lg:py-40">
       <div className="site-container flex flex-col gap-12 sm:gap-16 lg:gap-20">
@@ -21,7 +23,7 @@ export function About() {
           </p>
           <div className="flex flex-wrap gap-x-12 gap-y-8 sm:gap-24">
             <div>
-              <span className="mb-2 block font-serif text-3xl font-medium">2</span>
+              <span className="mb-2 block font-serif text-3xl font-medium">{projectCount}</span>
               <span className="text-[10px] uppercase tracking-[1px] text-neutral-400">{copy.about.projects}</span>
             </div>
             <div>
